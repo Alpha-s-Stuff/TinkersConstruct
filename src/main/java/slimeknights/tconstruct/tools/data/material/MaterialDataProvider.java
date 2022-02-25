@@ -1,8 +1,9 @@
 package slimeknights.tconstruct.tools.data.material;
 
+import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.DefaultResourceConditions;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.OrCondition;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.json.ConfigEnabledCondition;
 import slimeknights.tconstruct.library.data.material.AbstractMaterialDataProvider;
@@ -72,7 +73,11 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addCompatMetalMaterial(MaterialIds.platinum,   2, ORDER_COMPAT + ORDER_HARVEST);
     addCompatMetalMaterial(MaterialIds.silver,     2, ORDER_COMPAT + ORDER_WEAPON);
     addCompatMetalMaterial(MaterialIds.lead,       2, ORDER_COMPAT + ORDER_WEAPON);
-    ICondition condition = new OrCondition(ConfigEnabledCondition.FORCE_INTEGRATION_MATERIALS,
+//    ICondition condition = new OrCondition(ConfigEnabledCondition.FORCE_INTEGRATION_MATERIALS,
+//                                           tagExistsCondition("ingots/aluminum"),
+//                                           tagExistsCondition("ingots/tin"),
+//                                           tagExistsCondition("ingots/zinc"));
+    ConditionJsonProvider condition = DefaultResourceConditions.or(
                                            tagExistsCondition("ingots/aluminum"),
                                            tagExistsCondition("ingots/tin"),
                                            tagExistsCondition("ingots/zinc"));

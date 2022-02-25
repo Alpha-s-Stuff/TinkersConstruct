@@ -14,8 +14,6 @@ import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.shared.TinkerCommons;
@@ -26,7 +24,7 @@ import java.util.Map;
 import java.util.function.BooleanSupplier;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ConfigEnabledCondition implements ICondition, LootItemCondition {
+public class ConfigEnabledCondition implements ConditionJsonProvider, LootItemCondition {
   public static final ResourceLocation ID = TConstruct.getResource("config");
   public static final ConfigSerializer SERIALIZER = new ConfigSerializer();
   /* Map of config names to condition cache */
@@ -35,15 +33,11 @@ public class ConfigEnabledCondition implements ICondition, LootItemCondition {
   private final String configName;
   private final BooleanSupplier supplier;
 
-  @Override
-  public ResourceLocation getID() {
-    return ID;
-  }
 
-  @Override
-  public boolean test() {
-    return supplier.getAsBoolean();
-  }
+//  @Override
+//  public boolean test() {
+//    return supplier.getAsBoolean();
+//  }
 
   @Override
   public boolean test(LootContext lootContext) {
@@ -55,18 +49,28 @@ public class ConfigEnabledCondition implements ICondition, LootItemCondition {
     return TinkerCommons.lootConfig;
   }
 
-  private static class ConfigSerializer implements Serializer<ConfigEnabledCondition>, IConditionSerializer<ConfigEnabledCondition> {
-    @Override
-    public ResourceLocation getID() {
-      return ID;
-    }
+  @Override
+  public ResourceLocation getConditionId() {
+    return ID;
+  }
 
-    @Override
+  @Override
+  public void writeParameters(JsonObject object) {
+    object.addProperty("value", configName);
+  }
+
+  private static class ConfigSerializer implements Serializer<ConfigEnabledCondition> {
+//    @Override
+//    public ResourceLocation getID() {
+//      return ID;
+//    }
+
+
     public void write(JsonObject json, ConfigEnabledCondition value) {
       json.addProperty("prop", value.configName);
     }
 
-    @Override
+
     public ConfigEnabledCondition read(JsonObject json) {
       String prop = GsonHelper.getAsString(json, "prop");
       ConfigEnabledCondition config = PROPS.get(prop.toLowerCase(Locale.ROOT));

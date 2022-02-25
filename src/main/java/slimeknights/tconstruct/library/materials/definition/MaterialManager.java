@@ -11,11 +11,14 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import lombok.extern.log4j.Log4j2;
+import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
+import slimeknights.mantle.lib.crafting.CraftingHelper;
 import slimeknights.tconstruct.library.exception.TinkerJSONException;
 import slimeknights.tconstruct.library.materials.json.MaterialJson;
 import slimeknights.tconstruct.library.utils.Util;
@@ -32,6 +35,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNullElse;
@@ -49,7 +53,7 @@ public class MaterialManager extends SimpleJsonResourceReloadListener {
   public static final String FOLDER = "tinkering/materials/definition";
   public static final Gson GSON = (new GsonBuilder())
     .registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer())
-    .registerTypeAdapter(ICondition.class, new ConditionSerializer())
+    .registerTypeAdapter(Predicate.class, new ConditionSerializer())
     .setPrettyPrinting()
     .disableHtmlEscaping()
     .create();
@@ -175,8 +179,8 @@ public class MaterialManager extends SimpleJsonResourceReloadListener {
     try {
       MaterialJson materialJson = GSON.fromJson(jsonObject, MaterialJson.class);
       // condition
-      ICondition condition = materialJson.getCondition();
-      if (condition != null && !condition.test()) {
+      ConditionJsonProvider condition = materialJson.getCondition();
+      if (condition != null && ResourceConditions.conditionMatches(condition.toJson())) {
         log.debug("Skipped loading material {} as it did not match the condition", materialId);
         return null;
       }
@@ -185,8 +189,8 @@ public class MaterialManager extends SimpleJsonResourceReloadListener {
       MaterialJson.Redirect[] redirectsJson = materialJson.getRedirect();
       if (redirectsJson != null) {
         for (MaterialJson.Redirect redirect : redirectsJson) {
-          ICondition redirectCondition = redirect.getCondition();
-          if (redirectCondition == null || redirectCondition.test()) {
+          ConditionJsonProvider redirectCondition = redirect.getCondition();
+          if (redirectCondition == null || ResourceConditions.conditionMatches(redirectCondition.toJson())) {
             MaterialId redirectTarget = new MaterialId(redirect.getId());
             log.debug("Redirecting material {} to {}", materialId, redirectTarget);
             redirects.put(new MaterialId(materialId), redirectTarget);
@@ -210,15 +214,15 @@ public class MaterialManager extends SimpleJsonResourceReloadListener {
     }
   }
 
-  private static class ConditionSerializer implements JsonDeserializer<ICondition>, JsonSerializer<ICondition> {
+  private static class ConditionSerializer implements JsonDeserializer<Predicate<JsonObject>>, JsonSerializer<ConditionJsonProvider> {
     @Override
-    public ICondition deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
-      return CraftingHelper.getCondition(GsonHelper.convertToJsonObject(json, "condition"));
+    public Predicate<JsonObject> deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
+      return CraftingHelper.getCondition(GsonHelper.convertToJsonObject(json, "condition"));//todo: stupid imports
     }
 
     @Override
-    public JsonElement serialize(ICondition condition, Type type, JsonSerializationContext context) {
-      return CraftingHelper.serialize(condition);
+    public JsonElement serialize(ConditionJsonProvider src, Type typeOfSrc, JsonSerializationContext context) {
+      return src.toJson();
     }
   }
 }
