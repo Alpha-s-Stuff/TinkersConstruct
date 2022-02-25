@@ -6,56 +6,30 @@
  * Help from AbrarSyed
  */
 
+//file:noinspection GroovyAssignabilityCheck
 plugins {
-    id 'fabric-loom' version '0.11-SNAPSHOT'
-    id 'maven-publish'
-//    id 'io.freefair.lombok'
-    id 'io.github.juuxel.loom-quiltflower' version '1.6.0'
-    id 'org.quiltmc.quilt-mappings-on-loom' version '3.1.1'
+    id "fabric-loom" version "0.11-SNAPSHOT"
+    id "maven-publish"
+//    id "io.freefair.lombok"
+    id "io.github.juuxel.loom-quiltflower" version "1.+"
+    id "org.quiltmc.quilt-mappings-on-loom" version "4.+"
 }
-
-//import net.minecraftforge.gradle.common.task.SignJar
 
 repositories {
     mavenCentral()
     mavenLocal()
-    maven { // Vanilla
-        name 'Vanilla'
-        url 'https://libraries.minecraft.net/'
-    }
-    maven { // Modmenu
-        name 'terraformersmc maven'
-        url "https://maven.terraformersmc.com/releases/"
-    }
-    maven { // REI
-        name 'Shed man maven'
-        url = "https://maven.shedaniel.me/"
-    }
-    maven { // TOP
-        url "https://maven.wispforest.io"
-    }
-    maven { // CraftTweaker, Immersive Engineering
-        name 'BlameJared Maven'
-        url 'https://maven.blamejared.com'
-    }
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven {
-        url = "https://maven.jamieswhiteshirt.com/libs-release"
-        content {
-            includeGroup("com.jamieswhiteshirt")
-        }
-    }
-    maven {
-        name = 'Ladysnake Mods'
-        url = 'https://ladysnake.jfrog.io/artifactory/mods'
-    }
+    maven { url = "https://libraries.minecraft.net/" }
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
+    maven { url = "https://maven.shedaniel.me/"  }
+    maven { url = "https://maven.wispforest.io" } // TOP
+    maven { url = "https://maven.blamejared.com" } // CraftTweaker, Immersive Engineering
+    maven { url = "https://www.cursemaven.com" }
+    maven { url = "https://maven.jamieswhiteshirt.com/libs-release" }
+    maven { url = "https://ladysnake.jfrog.io/artifactory/mods" }
     maven { url = "https://maven.devos.community/releases/" }
     maven { url = "https://maven.devos.community/snapshots/" }
+    maven { url = "https://maven.parchmentmc.org" }
 }
 
 group = 'slimeknights.tconstruct'
@@ -115,44 +89,40 @@ dependencies {
     mappings loom.layered {
         it.addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:1.18.1+build.4:v2")) // https://maven.quiltmc.org/#browse/browse:release
         it.parchment("org.parchmentmc.data:parchment-1.18.1:BLEEDING-20211212.174449-1@zip") // https://ldtteam.jfrog.io/ui/native/parchmentmc-public/org/parchmentmc/data/parchment-1.18.1/BLEEDING-SNAPSHOT
-        it.officialMojangMappings()
+        it.officialMojangMappings() {
+            setNameSyntheticMembers(false)
+        }
     }
 
+    // dev environment
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
-    // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    modImplementation("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
-
-    // compile against the REI API but do not include it at runtime
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}")
-    // at runtime, use the full REI jar
     modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
-    modImplementation(include("io.github.tropheusj:milk-lib:0.1.6"))
-
     modRuntimeOnly("mcjty.theoneprobe:theoneprobe-fabric:${minecraft_base_version}-${probe_version}")
+    modRuntimeOnly("maven.modrinth:lazydfu:0.1.2")
 
-    // compileOnly fg.deobf("com.blamejared.crafttweaker:CraftTweaker-${minecraft_version}:${crt_version}")
-//    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${minecraft_version}-${ie_version}")
-    // runtimeOnly fg.deobf("curse.maven:MmmMmmMmmMmm-225738:3546593")
-    modRuntimeOnly("curse.maven:lazy-dfu-433518:3209972")
+    // lombok
+    compileOnly("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    deployerJars("org.apache.maven.wagon:wagon-ssh:3.5.1") // roll this back to 2.2 if stuff gets haunted
 
-    // runtimeOnly fg.deobf("curse.maven:terrablender-563928:3619749")
-    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:3616582")
-    // runtimeOnly fg.deobf("curse.maven:terralith-513688:3606078")
+    // dependencies
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+    modImplementation(include("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"))
+    modImplementation(include("io.github.tropheusj:milk-lib:0.1.6"))
+}
 
-    deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    testImplementation 'org.mockito:mockito-inline:4.2.0'
-    testImplementation 'org.assertj:assertj-core:3.21.0'
-
-    compileOnly "org.projectlombok:lombok:1.18.22"
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
-
-    testCompileOnly "org.projectlombok:lombok:1.18.22"
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+task buildOrPublish {
+    group = "build"
+    String mavenUser = System.getenv().MAVEN_USER
+    if (mavenUser != null && !mavenUser.isEmpty()) {
+        dependsOn(tasks.getByName("publish"))
+        println "prepared for publish"
+    } else {
+        dependsOn(tasks.getByName("build"))
+        println "prepared for build"
+    }
 }
 
 test {
@@ -290,15 +260,18 @@ task("uploadJars", dependsOn: "build") {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            // todo: remove deobf and sources jar in 1.13
-            artifact jar
-            artifact sourcesJar
+            from components.java
         }
     }
 
     repositories {
-        if (project.hasProperty('DEPLOY_DIR')) {
-            maven { url DEPLOY_DIR }
+        maven {
+            url = "https://maven.devos.community/${System.getenv().PUBLISH_SUFFIX}/"
+            credentials {
+                username = System.getenv().MAVEN_USER
+                password = System.getenv().MAVEN_PASS
+            }
+            authentication { basic(BasicAuthentication) }
         }
     }
 }

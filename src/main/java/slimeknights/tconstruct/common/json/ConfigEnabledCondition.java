@@ -6,6 +6,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSyntaxException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -28,8 +29,9 @@ public class ConfigEnabledCondition implements ConditionJsonProvider, LootItemCo
   public static final ResourceLocation ID = TConstruct.getResource("config");
   public static final ConfigSerializer SERIALIZER = new ConfigSerializer();
   /* Map of config names to condition cache */
-  private static final Map<String,ConfigEnabledCondition> PROPS = new HashMap<>();
+  public static final Map<String,ConfigEnabledCondition> PROPS = new HashMap<>();
 
+  @Getter
   private final String configName;
   private final BooleanSupplier supplier;
 
