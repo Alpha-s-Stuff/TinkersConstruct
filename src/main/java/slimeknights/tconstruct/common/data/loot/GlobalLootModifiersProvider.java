@@ -11,10 +11,12 @@ import net.minecraft.world.level.storage.loot.LootContext.EntityTarget;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import slimeknights.mantle.data.GlobalLootModifierProvider;
+import slimeknights.mantle.lib.loot.LootTableIdCondition;
 import slimeknights.mantle.loot.AddEntryLootModifier;
 import slimeknights.mantle.loot.ReplaceItemLootModifier;
 import slimeknights.mantle.loot.condition.BlockTagLootCondition;
@@ -37,8 +39,8 @@ public class GlobalLootModifiersProvider extends GlobalLootModifierProvider {
   @Override
   protected void start() {
     ReplaceItemLootModifier.builder(Ingredient.of(Items.BONE), ItemOutput.fromItem(TinkerMaterials.necroticBone))
-//                           .addCondition(LootTableIdCondition.builder(new ResourceLocation("entities/wither_skeleton")).build()) Todo: port
-                           .addCondition(ConfigEnabledCondition.WITHER_BONE_DROP)
+                           .addCondition(LootTableIdCondition.builder(new ResourceLocation("entities/wither_skeleton")).build())
+                           .addCondition((LootItemCondition) ConfigEnabledCondition.WITHER_BONE_DROP)
                            .build("wither_bone", this);
 
     // generic modifier hook

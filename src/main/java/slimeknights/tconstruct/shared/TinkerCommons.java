@@ -141,6 +141,7 @@ public final class TinkerCommons extends TinkerModule {
 
   void registerRecipeSerializers() {
     ResourceConditions.register(ConfigEnabledCondition.ID, TinkerConditons::isConfigEnabled);
+    ResourceConditions.register(TagDifferencePresentCondition.NAME, TinkerConditons::areTagsDiffrent);
     lootConfig = Registry.register(Registry.LOOT_CONDITION_TYPE, ConfigEnabledCondition.ID, new LootItemConditionType(ConfigEnabledCondition.SERIALIZER));
     lootBlockOrEntity = Registry.register(Registry.LOOT_CONDITION_TYPE, BlockOrEntityCondition.ID, new LootItemConditionType(BlockOrEntityCondition.SERIALIZER));
     CriterionRegistry.register(CONTAINER_OPENED_TRIGGER);

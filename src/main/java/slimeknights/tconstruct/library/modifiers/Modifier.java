@@ -3,6 +3,7 @@ package slimeknights.tconstruct.library.modifiers;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
@@ -67,7 +68,7 @@ import java.util.function.BiConsumer;
  * Any behavior special to either one is handled elsewhere.
  */
 @SuppressWarnings("unused")
-public class Modifier {
+public class Modifier{
 
   /** Modifier random instance, use for chance based effects */
   protected static Random RANDOM = new Random();

@@ -2,7 +2,9 @@ package slimeknights.tconstruct.library.json;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.fabricmc.fabric.api.resource.conditions.v1.ConditionJsonProvider;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.SerializationTags;
@@ -11,28 +13,30 @@ import net.minecraft.tags.TagCollection;
 import net.minecraft.world.item.Item;
 import slimeknights.mantle.util.JsonHelper;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.tools.client.particles.HammerAttackParticle;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** Condition requiring that items exist in the intersection of all required item tags */
 @RequiredArgsConstructor
-public class TagDifferencePresentCondition implements ICondition {
-  private static final ResourceLocation NAME = TConstruct.getResource("tag_difference_present");
-  public static final Serializer SERIALIZER = new Serializer();
+public class TagDifferencePresentCondition implements ConditionJsonProvider {
 
+  public static final ResourceLocation NAME = TConstruct.getResource("tag_difference_present");
+//  public static final Serializer SERIALIZER = new Serializer();
+  public static final Map<ResourceLocation, TagDifferencePresentCondition> TAGS = new HashMap<>();
+
+  @Getter
   private final ResourceLocation base;
+  @Getter
   private final List<ResourceLocation> subtracted;
   public TagDifferencePresentCondition(ResourceLocation base, ResourceLocation... names) {
     this(base, Arrays.asList(names));
+    TAGS.put(base, this);
   }
 
-  @Override
-  public ResourceLocation getID() {
-    return NAME;
-  }
-
-  @Override
   public boolean test() {
     TagCollection<Item> itemTags = SerializationTags.getInstance().getOrEmpty(Registry.ITEM_REGISTRY);
 
@@ -65,28 +69,43 @@ public class TagDifferencePresentCondition implements ICondition {
     return false;
   }
 
-  private static class Serializer implements IConditionSerializer<TagDifferencePresentCondition> {
-    @Override
-    public void write(JsonObject json, TagDifferencePresentCondition value) {
-      json.addProperty("base", value.base.toString());
-      JsonArray names = new JsonArray();
-      for (ResourceLocation name : value.subtracted) {
-        names.add(name.toString());
-      }
-      json.add("subtracted", names);
-    }
-
-    @Override
-    public TagDifferencePresentCondition read(JsonObject json) {
-      return new TagDifferencePresentCondition(
-        JsonHelper.getResourceLocation(json, "base"),
-        JsonHelper.parseList(json, "subtracted", JsonHelper::convertToResourceLocation));
-    }
-
-    @Override
-    public ResourceLocation getID()
-    {
-      return NAME;
-    }
+  @Override
+  public ResourceLocation getConditionId() {
+    return NAME;
   }
+
+  @Override
+  public void writeParameters(JsonObject json) {
+    json.addProperty("base", this.base.toString());
+    JsonArray names = new JsonArray();
+    for (ResourceLocation name : this.subtracted) {
+      names.add(name.toString());
+    }
+    json.add("subtracted", names);
+  }
+
+  //private static class Serializer implements Serializer<TagDifferencePresentCondition> {//FIXME: heavy confusion
+//    @Override
+//    public void write(JsonObject json, TagDifferencePresentCondition value) {
+//      json.addProperty("base", value.base.toString());
+//      JsonArray names = new JsonArray();
+//      for (ResourceLocation name : value.subtracted) {
+//        names.add(name.toString());
+//      }
+//      json.add("subtracted", names);
+//    }
+//
+//    @Override
+//    public TagDifferencePresentCondition read(JsonObject json) {
+//      return new TagDifferencePresentCondition(
+//        JsonHelper.getResourceLocation(json, "base"),
+//        JsonHelper.parseList(json, "subtracted", JsonHelper::convertToResourceLocation));
+//    }
+//
+//    @Override
+//    public ResourceLocation getID()
+//    {
+//      return NAME;
+//    }
+//  }
 }
