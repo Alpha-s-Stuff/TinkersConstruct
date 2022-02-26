@@ -42,7 +42,7 @@ public class ConfigEnabledCondition implements ConditionJsonProvider, LootItemCo
 //  }
 
   @Override
-  public boolean test(LootContext lootContext) {
+  public boolean test(LootContext context) {
     return supplier.getAsBoolean();
   }
 
