@@ -77,10 +77,6 @@ sourceSets {
     }
 }
 
-configurations {
-    deployerJars
-}
-
 loom.accessWidenerPath = file("src/main/resources/tinkers.accesswidener")
 
 dependencies {
@@ -105,7 +101,6 @@ dependencies {
     // lombok
     compileOnly("org.projectlombok:lombok:1.18.22")
     annotationProcessor("org.projectlombok:lombok:1.18.22")
-    deployerJars("org.apache.maven.wagon:wagon-ssh:3.5.1") // roll this back to 2.2 if stuff gets haunted
 
     // dependencies
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
@@ -125,18 +120,6 @@ task buildOrPublish {
     }
 }
 
-test {
-    useJUnitPlatform()
-}
-
-// process mods.toml to inject variables
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
 // need to copy into each build directory, unfortunately does not seem easy to do this automatically
 def buildPaths = [
     "$rootDir/out/production/resources", // IDEA
@@ -165,97 +148,45 @@ task replaceResources {
     }
 }
 
+// process mods.toml to inject variables
 processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+
     exclude 'META-INF/mods.toml'
     finalizedBy replaceResources
 }
 
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = 'UTF-8'
+
+    it.options.release = 17
+}
+
+java {
+    withSourcesJar()
+}
+
 jar {
+    from('LICENSE') {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+
     manifest {
         attributes([
-                "Specification-Title"     : "Tinkers Construct",
-                "Specification-Vendor"    : "Slime Knights",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "Slime Knights",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Specification-Title"     : "Tinkers Construct",
+            "Specification-Vendor"    : "Slime Knights",
+            "Specification-Version"   : "1", // We are version 1 of ourselves
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : "${version}",
+            "Implementation-Vendor"   : "Slime Knights",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
-
-jar.finalizedBy('reobfJar')
-
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-// verify the properties exist.. or initialize.
-if (!project.hasProperty("keystore_location")) // keystore location
-    ext.keystore_location = "."
-
-if (!project.hasProperty("keystore_user_alias")) // keystore user alias
-    ext.keystore_user_alias = ""
-if (!project.hasProperty("sftp_username"))
-    ext.sftp_username = ""
-if (!project.hasProperty("sftp_key"))
-    ext.sftp_key = ""
-if (!project.hasProperty("keystore_user_password")) // keystore user pass
-    ext.keystore_user_password = ""
-if (System.getenv().KSK_PW != null)
-    ext.keystore_user_password = System.getenv().KSK_PW
-
-
-task("uploadJars", dependsOn: "build") {
-
-    description = "uploads JARs"
-
-    if (project.hasProperty("local_maven") || project.hasProperty("sftp_maven")) {
-        apply plugin: 'maven'
-        uploadArchives {
-            repositories {
-                if (project.hasProperty("local_maven")) {
-                    mavenDeployer {
-                        repository(url: "file://${local_maven}")
-                    }
-                }
-                if (project.hasProperty("sftp_maven")) {
-                    repositories.mavenDeployer {
-                        configuration = configurations.deployerJars
-                        repository(url: "sftp://${sftp_maven}") {
-                            authentication(userName: "${sftp_username}", privateKey: "${sftp_key}")
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// task signUniversal(type: SignJar, dependsOn: 'jar') {
-//     onlyIf {
-//         project.hasProperty('jarsigner')
-//     }
-// 
-//     def jarsigner = [:]
-// 
-//     if (project.hasProperty('jarsigner'))
-//         jarsigner = project.jarsigner
-// 
-//     alias = 'tcon'
-//     storePass = jarsigner.storepass
-//     keyPass = jarsigner.keypass
-//     keyStore = jarsigner.keystore
-//     inputFile = jar.archivePath
-//     outputFile = jar.archivePath
-// }
-// uploadArchives.dependsOn signUniversal
-// build.dependsOn signUniversal
 
 publishing {
     publications {
