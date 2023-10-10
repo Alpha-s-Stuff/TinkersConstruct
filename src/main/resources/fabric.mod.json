@@ -57,6 +57,9 @@
       "tconstruct:modifier_data",
       "tconstruct:modifiers"
     ],
-    "banner": "Mantle.png"
+    "banner": "Mantle.png",
+    "sodium:options": {
+      "mixin.features.item": false
+    }
   }
 }
