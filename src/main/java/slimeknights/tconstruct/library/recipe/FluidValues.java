@@ -57,5 +57,6 @@ public final class FluidValues {
 
   // tank capacities
   /** Capacity of a seared or scorched lantern */
-  public static final int LANTERN_CAPACITY = 4050;
+  public static final int SEARED_LANTERN_CAPACITY = 4050;
+  public static final int SCORCHED_LANTERN_CAPACITY = 8100;
 }
