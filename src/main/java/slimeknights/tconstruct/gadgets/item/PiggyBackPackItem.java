@@ -58,8 +58,7 @@ public class PiggyBackPackItem extends TooltipItem {
     if (this.pickupEntity(playerIn, target)) {
       // unequip old armor
       if (chestArmor.getItem() != this) {
-        int piggyBackpackSlot = playerIn.getInventory().findSlotMatchingItem(stack);
-        playerIn.getInventory().add(piggyBackpackSlot, chestArmor);
+        playerIn.getInventory().add(chestArmor);
         chestArmor = ItemStack.EMPTY;
       }
 
