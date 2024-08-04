@@ -2188,7 +2188,7 @@
   "modifier.tconstruct.draconic.description": "위대한 드래곤의 힘으로 도구의 두 번째 능력 슬롯을 추가합니다!",
   "modifier.tconstruct.rebalanced": "재조정됨",
   "modifier.tconstruct.rebalanced.flavor": "도구에 균형의 저울을 장착하세요",
-  "modifier.tconstruct.rebalanced.description": "도구에 선택할 수 있는 추가 슬롯을 부여합니다. 가장 강력한 타입을 선택하면 패널티가 부여됩니다"
+  "modifier.tconstruct.rebalanced.description": "도구에 선택할 수 있는 추가 슬롯을 부여합니다. 가장 강력한 타입을 선택하면 패널티가 부여됩니다",
 
   "__comment": "모드팩의 강화 슬롯 +1 수식어",
   "modifier.tconstruct.red_extra_upgrade": "빨간 추가 강화",
@@ -2278,7 +2278,7 @@
   "modifier.tconstruct.crumbling.mining_speed": "붕괴 속도",
   "modifier.tconstruct.crystalbound": "수정 바운드",
   "modifier.tconstruct.crystalbound.flavor": "수정의 길은 직선입니다",
-  "modifier.tconstruct.crystalbound.description": "도구가 추가 속도를 얻지만, 화살 각도가 제한됩니다"
+  "modifier.tconstruct.crystalbound.description": "도구가 추가 속도를 얻지만, 화살 각도가 제한됩니다",
   "modifier.tconstruct.lightweight": "가벼움",
   "modifier.tconstruct.lightweight.flavor": "마법 처럼!",
   "modifier.tconstruct.lightweight.description": "도구가 크기에 비해 매우 가벼워져, 공격 속도와 채굴 속도가 증가합니다",
@@ -2589,7 +2589,7 @@
 
   "tooltip.tconstruct.part.added_by": "재료 추가:  %s",
   "tooltip.tconstruct.part.missing_material": "재료를 찾을 수 없습니다: %s",
-  "tooltip.tconstruct.part.missing_stats": "재료가 지원되지 않습니다 %s"
+  "tooltip.tconstruct.part.missing_stats": "재료가 지원되지 않습니다 %s",
   "tooltip.tconstruct.part.missing_info": "부품에 대한 정보가 없습니다",
   "tooltip.tconstruct.part.material_id": "재료 ID: %s",
 
