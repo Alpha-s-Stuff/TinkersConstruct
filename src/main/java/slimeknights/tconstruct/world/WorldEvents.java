@@ -184,7 +184,7 @@ public class WorldEvents {
           int weight = Config.COMMON.barterBlazingBlood.get();
           if (weight > 0) {
             injectInto(manager.getLootTable(name), "main", LootItem.lootTableItem(TinkerSmeltery.scorchedLantern).setWeight(weight)
-                                              .apply(SetFluidLootFunction.builder(new FluidStack(TinkerFluids.blazingBlood.get(), FluidValues.LANTERN_CAPACITY)))
+                                              .apply(SetFluidLootFunction.builder(new FluidStack(TinkerFluids.blazingBlood.get(), FluidValues.SCORCHED_LANTERN_CAPACITY)))
                                               .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))
                                               .build());
           }
