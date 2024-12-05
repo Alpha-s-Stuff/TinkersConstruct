@@ -8,7 +8,7 @@
 
 //file:noinspection GroovyAssignabilityCheck
 plugins {
-    id "fabric-loom" version "1.5.+"
+    id "fabric-loom" version "1.6.+"
     id "maven-publish"
 //    id "io.freefair.lombok"
 }

@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.library.utils;
 
-import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
+import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents.LivingTickEvent;
 import net.fabricmc.fabric.api.entity.FakePlayer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
@@ -20,7 +20,7 @@ public class SlimeBounceHandler {
 
   /** Registers event handlers */
   public static void init() {
-    LivingEntityEvents.TICK.register(SlimeBounceHandler::onLivingTick);
+    LivingTickEvent.TICK.register(SlimeBounceHandler::onLivingTick);
     ServerLifecycleEvents.SERVER_STOPPING.register(SlimeBounceHandler::serverStopping);
   }
 
@@ -58,7 +58,8 @@ public class SlimeBounceHandler {
   }
 
   /** Called on living tick to preserve momentum and bounce */
-  private static void onLivingTick(LivingEntity entity) {
+  private static void onLivingTick(LivingTickEvent event) {
+    LivingEntity entity = event.getEntity();
     BounceInfo info = BOUNCING_ENTITIES.get(entity);
 
     // if we have info for this entity, time to work

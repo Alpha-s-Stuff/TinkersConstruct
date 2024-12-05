@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.tools.modifiers.defense;
 
 import io.github.fabricators_of_create.porting_lib.event.common.ExplosionEvents;
-import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
+import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents.LivingTickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
@@ -32,7 +32,7 @@ public class BlastProtectionModifier extends AbstractProtectionModifier<BlastDat
   public BlastProtectionModifier() {
     super(BLAST_DATA);
     ExplosionEvents.DETONATE.register(BlastProtectionModifier::onExplosionDetonate);
-    LivingEntityEvents.TICK.register(BlastProtectionModifier::livingTick);
+    LivingTickEvent.TICK.register(BlastProtectionModifier::livingTick);
   }
 
   @Override
@@ -87,7 +87,8 @@ public class BlastProtectionModifier extends AbstractProtectionModifier<BlastDat
   }
 
   /** If the entity is marked for knockback update, adjust velocity */
-  private static void livingTick(LivingEntity living) {
+  private static void livingTick(LivingTickEvent event) {
+    LivingEntity living = event.getEntity();
     if (!living.level().isClientSide && !living.isSpectator()) {
       TinkerDataCapability.CAPABILITY.maybeGet(living).ifPresent(data -> {
         BlastData blastData = data.get(BLAST_DATA);

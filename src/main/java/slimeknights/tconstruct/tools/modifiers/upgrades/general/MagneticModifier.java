@@ -1,6 +1,5 @@
 package slimeknights.tconstruct.tools.modifiers.upgrades.general;
 
-import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -11,6 +10,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents.LivingTickEvent;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.TinkerHooks;
@@ -33,7 +33,7 @@ public class MagneticModifier extends TotalArmorLevelModifier implements PlantHa
 
   public MagneticModifier() {
     super(MAGNET);
-    LivingEntityEvents.TICK.register(MagneticModifier::onLivingTick);
+    LivingTickEvent.TICK.register(MagneticModifier::onLivingTick);
   }
 
   @Override
@@ -76,8 +76,9 @@ public class MagneticModifier extends TotalArmorLevelModifier implements PlantHa
   // armor
 
   /** Called to perform the magnet for armor */
-  private static void onLivingTick(LivingEntity entity) {
+  private static void onLivingTick(LivingTickEvent event) {
     // TOOD: this will run on any held armor that is also melee/harvest, is that a problem?
+    LivingEntity entity = event.getEntity();
     if (!entity.isSpectator() && (entity.tickCount & 1) == 0) {
       int level = ModifierUtil.getTotalModifierLevel(entity, MAGNET);
       if (level > 0) {

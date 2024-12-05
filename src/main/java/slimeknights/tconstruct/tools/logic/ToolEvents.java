@@ -5,6 +5,7 @@ import io.github.fabricators_of_create.porting_lib.entity.events.EntityEvents;
 import io.github.fabricators_of_create.porting_lib.core.event.BaseEvent.Result;
 import io.github.fabricators_of_create.porting_lib.entity.events.ProjectileImpactEvent;
 import io.github.fabricators_of_create.porting_lib.event.common.GrindstoneEvents;
+import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents.LivingTickEvent;
 import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents.LivingVisibilityEvent;
 import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
 import io.github.fabricators_of_create.porting_lib.entity.events.PlayerEvents;
@@ -86,7 +87,7 @@ public class ToolEvents {
     LivingEntityEvents.HURT.register(ToolEvents::enderDragonDamage);
     LivingEntityEvents.HURT.register(ToolEvents::livingAttack);
     LivingEntityEvents.HURT.register(ToolEvents::livingHurt);
-    LivingEntityEvents.TICK.register(ToolEvents::livingWalk);
+    LivingTickEvent.TICK.register(ToolEvents::livingWalk);
     LivingVisibilityEvent.VISIBILITY.register(ToolEvents::livingVisibility);
     EntityEvents.PROJECTILE_IMPACT.register(ToolEvents::projectileHit);
     GrindstoneEvents.ON_PLACE_ITEM.register(ToolEvents::onGrindstoneChange);
@@ -377,7 +378,8 @@ public class ToolEvents {
   }
 
   /** Called the modifier hook when an entity's position changes */
-  static void livingWalk(LivingEntity living) {
+  static void livingWalk(LivingTickEvent event) {
+    LivingEntity living = event.getEntity();
     // this event runs before vanilla updates prevBlockPos
     BlockPos pos = living.blockPosition();
     BlockPos lastPos = EntityHelper.getLastPos(living);
