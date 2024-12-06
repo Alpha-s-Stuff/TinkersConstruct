@@ -54,7 +54,7 @@ public class InteractionHandler {
   public static final EquipmentSlot[] HAND_SLOTS = {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND};
 
   /** Implements {@link EntityInteractionModifierHook#beforeEntityUse(IToolStackView, ModifierEntry, Player, Entity, InteractionHand, InteractionSource)} */
-  static InteractionResult beforeEntityInteract(Player player, Level world, InteractionHand hand, Entity target, @Nullable EntityHitResult hitResult) {
+  static InteractionResult beforeEntityInteract(Player player, Entity target, InteractionHand hand) {
     ItemStack stack = player.getItemInHand(hand);
     InteractionSource source = InteractionSource.RIGHT_CLICK;
     if (!stack.is(TinkerTags.Items.HELD)) {
@@ -64,10 +64,10 @@ public class InteractionHandler {
         if (stack.is(TinkerTags.Items.INTERACTABLE_ARMOR)) {
           source = InteractionSource.ARMOR;
         } else {
-          return InteractionResult.PASS;
+          return null;
         }
       } else {
-        return InteractionResult.PASS;
+        return null;
       }
     }
     if (!player.getCooldowns().isOnCooldown(stack.getItem())) {
@@ -81,11 +81,11 @@ public class InteractionHandler {
         }
       }
     }
-    return InteractionResult.PASS;
+    return null;
   }
 
   /** Implements {@link EntityInteractionModifierHook#afterEntityUse(IToolStackView, ModifierEntry, Player, LivingEntity, InteractionHand, InteractionSource)} for chestplates */
-  static InteractionResult afterEntityInteract(Player player, Level world, InteractionHand hand, Entity target, @Nullable EntityHitResult hitResult) {
+  static InteractionResult afterEntityInteract(Player player, Entity target, InteractionHand hand) {
     if (player.getItemInHand(hand).isEmpty() && !player.isSpectator()) {
       ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
       if (chestplate.is(TinkerTags.Items.INTERACTABLE_ARMOR) && !player.getCooldowns().isOnCooldown(chestplate.getItem())) {
@@ -97,7 +97,7 @@ public class InteractionHandler {
         // initial entity interaction
         InteractionResult result = target.interact(player, hand);
         if (result.consumesAction()) {
-          return InteractionResult.PASS;
+          return result;
         }
 
         // after entity use for chestplates
@@ -114,10 +114,10 @@ public class InteractionHandler {
         // did not interact with an entity? try direct interaction
         // needs to be run here as the interact empty hook does not fire when targeting entities
         result = onChestplateUse(player, chestplate, hand);
-        return InteractionResult.PASS;
+        return result;
       }
     }
-    return InteractionResult.PASS;
+    return null;
   }
 
   /** Runs one of the two blockUse hooks for a chestplate */
@@ -381,9 +381,9 @@ public class InteractionHandler {
   }
 
   public static void init() {
-    UseEntityCallback.EVENT.register(InteractionHandler::beforeEntityInteract);
-    UseEntityCallback.EVENT.register(TConstruct.getResource("event_phase"), InteractionHandler::afterEntityInteract);
-    UseEntityCallback.EVENT.addPhaseOrdering(Event.DEFAULT_PHASE, TConstruct.getResource("event_phase"));
+    PlayerInteractionEvents.INTERACT_ENTITY_GENERAL.register(InteractionHandler::beforeEntityInteract);
+    PlayerInteractionEvents.INTERACT_ENTITY_GENERAL.register(TConstruct.getResource("event_phase"), InteractionHandler::afterEntityInteract);
+    PlayerInteractionEvents.INTERACT_ENTITY_GENERAL.addPhaseOrdering(Event.DEFAULT_PHASE, TConstruct.getResource("event_phase"));
     UseBlockCallback.EVENT.register(InteractionHandler::chestplateInteractWithBlock);
     AttackEntityCallback.EVENT.register(InteractionHandler::onChestplateAttack);
     PlayerInteractionEvents.LEFT_CLICK_BLOCK.register(InteractionHandler::leftClickBlock);
