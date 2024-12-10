@@ -1,12 +1,11 @@
 package slimeknights.tconstruct.tools.modifiers.defense;
 
-import io.github.fabricators_of_create.porting_lib.event.common.PotionEvents;
+import io.github.fabricators_of_create.porting_lib.entity.events.living.MobEffectEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +26,7 @@ public class MagicProtectionModifier extends AbstractProtectionModifier<Modifier
   private static final TinkerDataKey<ModifierMaxLevel> MAGIC_DATA = TConstruct.createKey("magic_protection");
   public MagicProtectionModifier() {
     super(MAGIC_DATA);
-    PotionEvents.POTION_ADDED.register(MagicProtectionModifier::onPotionStart);
+    MobEffectEvent.ADDED.register(MagicProtectionModifier::onPotionStart);
   }
 
   @Override
@@ -48,10 +47,10 @@ public class MagicProtectionModifier extends AbstractProtectionModifier<Modifier
     return new ModifierMaxLevel();
   }
 
-  private static void onPotionStart(LivingEntity living, MobEffectInstance newEffect, MobEffectInstance oldEffect, @Nullable Entity source) {
-//    MobEffectInstance newEffect = event.getPotionEffect();
+  private static void onPotionStart(MobEffectEvent.Added event) {
+    LivingEntity living = event.getEntity();
+    MobEffectInstance newEffect = event.getEffectInstance();
     if (!newEffect.getEffect().isBeneficial()) {
-//      LivingEntity living = (LivingEntity) event.getEntity();
       TinkerDataCapability.CAPABILITY.maybeGet(living).ifPresent(data -> {
         ModifierMaxLevel magicData = data.get(MAGIC_DATA);
         if (magicData != null) {

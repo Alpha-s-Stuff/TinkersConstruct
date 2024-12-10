@@ -49,7 +49,7 @@ public abstract class ContainerFillingRecipe implements ICastingRecipe, IMultiRe
   protected final Item container;
 
   private static Optional<Storage<FluidVariant>> getFluidHandlerItem(ItemStack stack) {
-    return Optional.ofNullable(FluidStorage.ITEM.find(stack, ContainerItemContext.withInitial(stack)));
+    return Optional.ofNullable(FluidStorage.ITEM.find(stack, ContainerItemContext.withConstant(stack)));
   }
 
   @Override
@@ -99,7 +99,7 @@ public abstract class ContainerFillingRecipe implements ICastingRecipe, IMultiRe
   @Override
   public ItemStack assemble(ICastingContainer inv, RegistryAccess registryAccess) {
     ItemStack stack = inv.getStack().copy();
-    ContainerItemContext context = ContainerItemContext.withInitial(stack);
+    ContainerItemContext context = ContainerItemContext.withConstant(stack);
     return Optional.ofNullable(FluidStorage.ITEM.find(stack, context)).map(handler -> {
       try (Transaction tx = TransferUtil.getTransaction()) {
         handler.insert(FluidVariant.of(inv.getFluid(), inv.getFluidTag()), this.fluidAmount, tx);
@@ -122,7 +122,7 @@ public abstract class ContainerFillingRecipe implements ICastingRecipe, IMultiRe
                                              .map(fluid -> {
                                                FluidStack fluidStack = new FluidStack(fluid, fluidAmount);
                                                ItemStack stack = new ItemStack(container);
-                                               ContainerItemContext context = ContainerItemContext.withInitial(stack);
+                                               ContainerItemContext context = ContainerItemContext.withConstant(stack);
                                                stack = Optional.ofNullable(FluidStorage.ITEM.find(stack, context)).map(handler -> {
                                                  try (Transaction tx = TransferUtil.getTransaction()) {
                                                    handler.insert(fluidStack.getType(), fluidStack.getAmount(), tx);
