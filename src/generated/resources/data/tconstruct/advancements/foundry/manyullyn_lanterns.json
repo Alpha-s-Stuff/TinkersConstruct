@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "item": "tconstruct:scorched_lantern",
-      "nbt": "{tank:{Amount:4050L,Capacity:4050L,Variant:{fluid:\"tconstruct:molten_manyullyn\"}}}"
+      "nbt": "{tank:{Amount:8100L,Capacity:8100L,Variant:{fluid:\"tconstruct:molten_manyullyn\"}}}"
     },
     "title": {
       "translate": "advancements.tconstruct.foundry.manyullyn_lanterns.title"
@@ -44,7 +44,7 @@
             "count": {
               "min": 64
             },
-            "nbt": "{tank:{Amount:4050L,Capacity:4050L,Variant:{fluid:\"tconstruct:molten_manyullyn\"}}}"
+            "nbt": "{tank:{Amount:8100L,Capacity:8100L,Variant:{fluid:\"tconstruct:molten_manyullyn\"}}}"
           }
         ]
       }

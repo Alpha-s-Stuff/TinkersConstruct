@@ -1306,13 +1306,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     tagMelting(consumer, TinkerFluids.moltenObsidian.get(), FluidValues.GLASS_PANE, "dusts/obsidian", 1.0f, folder + "obsidian/dust", true);
 
     // emerald
-    gemMelting(consumer, TinkerFluids.moltenEmerald.get(), "emerald", true, 9, folder, false, Byproduct.DIAMOND);
+    gemMelting(consumer, TinkerFluids.moltenEmerald.get(), "emerald", "s", true, 9, folder, false, Byproduct.DIAMOND);
     MeltingRecipeBuilder.melting(Ingredient.of(TinkerModifiers.emeraldReinforcement), TinkerFluids.moltenEmerald.get(), FluidValues.GEM_SHARD)
                         .addByproduct(new FluidStack(TinkerFluids.moltenObsidian.get(), FluidValues.GLASS_PANE))
                         .save(consumer, modResource(metalFolder + "emerald/reinforcement"));
 
     // quartz
-    gemMelting(consumer, TinkerFluids.moltenQuartz.get(), "quartz", true, 4, folder, false, Byproduct.AMETHYST);
+    gemMelting(consumer, TinkerFluids.moltenQuartz.get(), "quartz", "", true, 4, folder, false, Byproduct.AMETHYST);
     MeltingRecipeBuilder.melting(Ingredient.of(Blocks.SMOOTH_QUARTZ, Blocks.QUARTZ_PILLAR, Blocks.QUARTZ_BRICKS, Blocks.CHISELED_QUARTZ_BLOCK, Blocks.QUARTZ_STAIRS, Blocks.SMOOTH_QUARTZ_STAIRS),
       TinkerFluids.moltenQuartz.get(), FluidValues.SMALL_GEM_BLOCK, 2.0f)
                         .save(consumer, modResource(folder + "quartz/decorative_block"));
@@ -1342,7 +1342,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                         .save(consumer, modResource(folder + "amethyst/block"));
 
     // diamond
-    gemMelting(consumer, TinkerFluids.moltenDiamond.get(), "diamond", true, 9, folder, false, Byproduct.QUARTZ);
+    gemMelting(consumer, TinkerFluids.moltenDiamond.get(), "diamond", "s", true, 9, folder, false, Byproduct.QUARTZ);
 
     // iron melting - standard values
     MeltingRecipeBuilder.melting(Ingredient.of(Items.ACTIVATOR_RAIL, Items.DETECTOR_RAIL, Blocks.STONECUTTER, Blocks.PISTON, Blocks.STICKY_PISTON), TinkerFluids.moltenIron.get(), FluidValues.INGOT)

@@ -1,14 +1,14 @@
-// 1.20.1	2024-04-19T14:57:03.39959144	Hephaestus/Tinkers Construct Entity Type TinkerTags
-8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/tconstruct/tags/entity_types/piggybackpack_blacklist.json
-dd912f9b6c311e1bbc8259fd1c0dcc97479a001a data/c/tags/entity_types/small_armor.json
-a2fe926d16451411d1348113f1761e56c36702f6 data/tconstruct/tags/entity_types/killagers.json
-a104d9e73a1ccd89eca8971ce21eefbbb7d82c54 data/c/tags/entity_types/creepers.json
-5b5b4d699ad8f29b7cf33dcae445970b49c50c7a data/tconstruct/tags/entity_types/bacon_producer.json
-fd38fdeaee44893aa121e6e005f0a7c9a2096f91 data/c/tags/entity_types/slimes.json
-8baae05908de3b7b01b6c8bbf01664641fb50650 data/c/tags/entity_types/illagers.json
-933c0411946e4f2eba42de9597b70cd0bb00b5a6 data/c/tags/entity_types/reflecting/preserve_owner.json
-406e53795cecc60c1a9f6c41544a2c4739bf5d98 data/c/tags/entity_types/villagers.json
-738529e6dfc6194974e06f5f1c8a6a1c821f6c46 data/tconstruct/tags/entity_types/melting/hide_in_default.json
-8a23702b05296c8af5014d6aa6e9265ded85c7d9 data/c/tags/entity_types/reflecting/blacklist.json
-8af81a64fc34236bbf5815fdd0438b12eb92b843 data/tconstruct/tags/entity_types/melting/show_in_default.json
-57b7f4417246bced071f9c38de6cff58780e2a3c data/tconstruct/tags/entity_types/rare_mobs.json
+// 1.20.1	2024-12-10T15:50:27.6566993	Hephaestus/Tinkers Construct Entity Type TinkerTags
+a2fe926d16451411d1348113f1761e56c36702f6 data\tconstruct\tags\entity_types\killagers.json
+8baae05908de3b7b01b6c8bbf01664641fb50650 data\c\tags\entity_types\illagers.json
+738529e6dfc6194974e06f5f1c8a6a1c821f6c46 data\tconstruct\tags\entity_types\melting\hide_in_default.json
+8a23702b05296c8af5014d6aa6e9265ded85c7d9 data\c\tags\entity_types\reflecting\blacklist.json
+fd38fdeaee44893aa121e6e005f0a7c9a2096f91 data\c\tags\entity_types\slimes.json
+dd912f9b6c311e1bbc8259fd1c0dcc97479a001a data\c\tags\entity_types\small_armor.json
+a104d9e73a1ccd89eca8971ce21eefbbb7d82c54 data\c\tags\entity_types\creepers.json
+57b7f4417246bced071f9c38de6cff58780e2a3c data\tconstruct\tags\entity_types\rare_mobs.json
+8a23702b05296c8af5014d6aa6e9265ded85c7d9 data\tconstruct\tags\entity_types\piggybackpack_blacklist.json
+406e53795cecc60c1a9f6c41544a2c4739bf5d98 data\c\tags\entity_types\villagers.json
+5b5b4d699ad8f29b7cf33dcae445970b49c50c7a data\tconstruct\tags\entity_types\bacon_producer.json
+8af81a64fc34236bbf5815fdd0438b12eb92b843 data\tconstruct\tags\entity_types\melting\show_in_default.json
+933c0411946e4f2eba42de9597b70cd0bb00b5a6 data\c\tags\entity_types\reflecting\preserve_owner.json

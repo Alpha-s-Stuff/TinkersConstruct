@@ -1,6 +1,6 @@
-// 1.20.1	2024-04-19T14:57:03.400170592	Hephaestus/Tinkers' Construct Modifier Tag Provider
-2872503e9d91f0faa6059a052555f2805696a05b data/tconstruct/tinkering/tags/modifiers/invisible_ink_blacklist.json
-5ac6481d09145ff1babe21d13c902329c8b99620 data/tconstruct/tinkering/tags/modifiers/extract_blacklist/tools.json
-e02872eb9e9b3206ef3ee88dc31955b4cac99ef2 data/tconstruct/tinkering/tags/modifiers/extract_blacklist/slotless.json
-1abdbb15945e26968a1561bf7f7a723ec545c932 data/tconstruct/tinkering/tags/modifiers/dual_interaction.json
-0acf990d78fcc2cabdb5c280b8b8460e4bd92bb6 data/tconstruct/tinkering/tags/modifiers/gems.json
+// 1.20.1	2024-12-10T15:50:27.6586948	Hephaestus/Tinkers' Construct Modifier Tag Provider
+1abdbb15945e26968a1561bf7f7a723ec545c932 data\tconstruct\tinkering\tags\modifiers\dual_interaction.json
+2872503e9d91f0faa6059a052555f2805696a05b data\tconstruct\tinkering\tags\modifiers\invisible_ink_blacklist.json
+0acf990d78fcc2cabdb5c280b8b8460e4bd92bb6 data\tconstruct\tinkering\tags\modifiers\gems.json
+5ac6481d09145ff1babe21d13c902329c8b99620 data\tconstruct\tinkering\tags\modifiers\extract_blacklist\tools.json
+e02872eb9e9b3206ef3ee88dc31955b4cac99ef2 data\tconstruct\tinkering\tags\modifiers\extract_blacklist\slotless.json
