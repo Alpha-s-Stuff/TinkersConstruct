@@ -170,8 +170,8 @@ public class FuelModule implements ContainerData {
       if (time > 0) {
         if (consume) {
           try (Transaction tx = TransferUtil.getTransaction()) {
-            view.extract(view.getResource(), 1, tx);
             if (view.getResource().matches(stack) && !stack.isEmpty()) {
+              view.extract(view.getResource(), 1, tx);
               fuel += time;
               fuelQuality = time;
               temperature = SOLID_TEMPERATURE;
@@ -192,10 +192,8 @@ public class FuelModule implements ContainerData {
                   world.addFreshEntity(itementity);
                 }
               }
-            } else {
-              TConstruct.LOG.error("Invalid item removed from solid fuel handler");
-            }
-            tx.commit();
+              tx.commit();
+            } else tx.abort();
           }
         }
         return SOLID_TEMPERATURE;
