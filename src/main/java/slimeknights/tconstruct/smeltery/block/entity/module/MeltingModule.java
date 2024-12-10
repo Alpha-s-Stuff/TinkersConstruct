@@ -3,6 +3,7 @@ package slimeknights.tconstruct.smeltery.block.entity.module;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemHandlerHelper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
@@ -258,5 +259,10 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
       case REQUIRED_TIME -> requiredTime = value;
       case REQUIRED_TEMP -> requiredTemp = value;
     }
+  }
+
+  @Override
+  protected int getCapacity(ItemVariant itemVariant) {
+    return 1;
   }
 }
