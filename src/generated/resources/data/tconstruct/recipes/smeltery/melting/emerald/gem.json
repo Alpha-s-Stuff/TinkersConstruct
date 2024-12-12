@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:emerald_gems"
+    "tag": "c:emeralds"
   },
   "result": {
     "amount": 8100,

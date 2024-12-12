@@ -1,5 +1,5 @@
-// 1.20.1	2024-04-19T14:57:03.401298294	Hephaestus/Tags for minecraft:damage_type
-6e6291f6e35f0cf4355ed42046abab1d828679eb data/minecraft/tags/damage_type/bypasses_armor.json
-884e3cefff5630f13cd3344be611dc7e7a053e7d data/minecraft/tags/damage_type/bypasses_effects.json
-70e266bfcb0b6b194658fca55723698ce6d8bb2f data/minecraft/tags/damage_type/is_fire.json
-898bd2eb705d936aaf1449ce93ced03fee20e38f data/minecraft/tags/damage_type/is_explosion.json
+// 1.20.1	2024-12-10T15:50:27.6617175	Hephaestus/Tags for minecraft:damage_type
+884e3cefff5630f13cd3344be611dc7e7a053e7d data\minecraft\tags\damage_type\bypasses_effects.json
+70e266bfcb0b6b194658fca55723698ce6d8bb2f data\minecraft\tags\damage_type\is_fire.json
+6e6291f6e35f0cf4355ed42046abab1d828679eb data\minecraft\tags\damage_type\bypasses_armor.json
+898bd2eb705d936aaf1449ce93ced03fee20e38f data\minecraft\tags\damage_type\is_explosion.json

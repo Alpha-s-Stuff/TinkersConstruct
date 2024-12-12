@@ -196,16 +196,16 @@ public interface ISmelteryRecipeHelper extends ICastCreationHelper {
    * @param isOptional  If true, this recipe is entirely optional
    * @param byproducts  List of byproduct options for this metal, first one that is present will be used
    */
-  default void gemMelting(Consumer<FinishedRecipe> consumer, Fluid fluid, String name, boolean hasOre, int blockSize, String folder, boolean isOptional, IByproduct... byproducts) {
+  default void gemMelting(Consumer<FinishedRecipe> consumer, Fluid fluid, String name, String tagSuffix, boolean hasOre, int blockSize, String folder, boolean isOptional, IByproduct... byproducts) {
     String prefix = folder + "/" + name + "/";
     // basic
-    tagMelting(consumer, fluid, FluidValues.GEM * blockSize, name + "_blocks", (float)Math.sqrt(blockSize), prefix + "block", isOptional);
-    tagMelting(consumer, fluid, FluidValues.GEM, name + "_gems", 1.0f, prefix + "gem", isOptional);
+    tagMelting(consumer, fluid, FluidValues.GEM * blockSize, name + "_blocks", (float) Math.sqrt(blockSize), prefix + "block", isOptional);
+    tagMelting(consumer, fluid, FluidValues.GEM, name + tagSuffix, 1.0f, prefix + "gem", isOptional);
     // ores
     if (hasOre) {
-      oreMelting(consumer, fluid, FluidValues.GEM / 2, name + "_ores", Tags.Items.ORE_RATES_SPARSE,   1.0f, prefix + "ore_sparse",   isOptional, OreRateType.GEM, 0.5f, byproducts);
-      oreMelting(consumer, fluid, FluidValues.GEM,     name + "_ores", Tags.Items.ORE_RATES_SINGULAR, 1.5f, prefix + "ore_singular", isOptional, OreRateType.GEM, 1.0f, byproducts);
-      oreMelting(consumer, fluid, FluidValues.GEM * 3, name + "_ores", Tags.Items.ORE_RATES_DENSE,    4.5f, prefix + "ore_dense",    isOptional, OreRateType.GEM, 3.0f, byproducts);
+      oreMelting(consumer, fluid, FluidValues.GEM / 2, name + "_ores", Tags.Items.ORE_RATES_SPARSE, 1.0f, prefix + "ore_sparse", isOptional, OreRateType.GEM, 0.5f, byproducts);
+      oreMelting(consumer, fluid, FluidValues.GEM, name + "_ores", Tags.Items.ORE_RATES_SINGULAR, 1.5f, prefix + "ore_singular", isOptional, OreRateType.GEM, 1.0f, byproducts);
+      oreMelting(consumer, fluid, FluidValues.GEM * 3, name + "_ores", Tags.Items.ORE_RATES_DENSE, 4.5f, prefix + "ore_dense", isOptional, OreRateType.GEM, 3.0f, byproducts);
       georeMelting(consumer, fluid, FluidValues.GEM, name, prefix);
     }
   }

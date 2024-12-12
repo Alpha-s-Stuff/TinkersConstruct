@@ -170,8 +170,8 @@ public class FuelModule implements ContainerData {
       if (time > 0) {
         if (consume) {
           try (Transaction tx = TransferUtil.getTransaction()) {
-            view.extract(view.getResource(), 1, tx);
             if (view.getResource().matches(stack) && !stack.isEmpty()) {
+              view.extract(view.getResource(), 1, tx);
               fuel += time;
               fuelQuality = time;
               temperature = SOLID_TEMPERATURE;
@@ -192,10 +192,8 @@ public class FuelModule implements ContainerData {
                   world.addFreshEntity(itementity);
                 }
               }
-            } else {
-              TConstruct.LOG.error("Invalid item removed from solid fuel handler");
-            }
-            tx.commit();
+              tx.commit();
+            } else tx.abort();
           }
         }
         return SOLID_TEMPERATURE;
@@ -265,7 +263,7 @@ public class FuelModule implements ContainerData {
     Optional<Integer> temperature = Optional.ofNullable(storage).map(tryLiquidFuel(consume));
     if (temperature.isPresent()) {
       itemHandler = null;
-      fluidHandler = StorageProvider.createForFluids(getLevel(), pos);;
+      fluidHandler = StorageProvider.createForFluids(getLevel(), pos);
       tankDisplayHandlers = null;
       lastPos = pos;
       return temperature.get();
@@ -293,9 +291,9 @@ public class FuelModule implements ContainerData {
     // if we have a handler, try to use that if possible
     Optional<Integer> handlerTemp = Optional.empty();
     if (fluidHandler != null) {
-      handlerTemp = Optional.ofNullable(getFluidStorage()).map(tryLiquidFuel(consume));
+      handlerTemp = getFluidStorage().map(tryLiquidFuel(consume));
     } else if (itemHandler != null) {
-      handlerTemp = Optional.ofNullable(getItemStorage()).map(trySolidFuel(consume));
+      handlerTemp = getItemStorage().map(trySolidFuel(consume));
     // if no handler, try to find one at the last position
     } else if (lastPos != NULL_POS) {
       int posTemp = tryFindFuel(lastPos, consume);
@@ -327,20 +325,16 @@ public class FuelModule implements ContainerData {
     return 0;
   }
 
-  public Storage<FluidVariant> getFluidStorage() {
-    Storage<FluidVariant> storage = fluidHandler.get(null);
-    if (storage == null) {
-      reset();
-    }
-    return storage;
+  public Optional<Storage<FluidVariant>> getFluidStorage() {
+    Optional<Storage<FluidVariant>> optional = Optional.ofNullable(fluidHandler).map(x -> x.get(null));
+    if (optional.isEmpty()) reset();
+    return optional;
   }
 
-  public Storage<ItemVariant> getItemStorage() {
-    Storage<ItemVariant> storage = itemHandler.get(null);
-    if (storage == null) {
-      reset();
-    }
-    return storage;
+  public Optional<Storage<ItemVariant>> getItemStorage() {
+    Optional<Storage<ItemVariant>> optional = Optional.ofNullable(itemHandler).map(x -> x.get(null));
+    if (optional.isEmpty()) reset();
+    return optional;
   }
 
   /* Tag */
@@ -477,7 +471,7 @@ public class FuelModule implements ContainerData {
     }
 
     // determine what fluid we have and hpw many other fluids we have
-    FuelInfo info = Optional.ofNullable(getFluidStorage()).map(handler -> {
+    FuelInfo info = getFluidStorage().map(handler -> {
       for (StorageView<FluidVariant> view : handler.nonEmptyViews()) {
         FluidStack fluid = new FluidStack(view);
         int temperature = 0;
