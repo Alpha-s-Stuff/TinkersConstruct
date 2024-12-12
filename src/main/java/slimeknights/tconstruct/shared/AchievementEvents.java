@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.shared;
 
-import io.github.fabricators_of_create.porting_lib.entity.events.living.LivingHurtEvent;
 import io.github.fabricators_of_create.porting_lib.event.common.ItemCraftedCallback;
+import io.github.fabricators_of_create.porting_lib.entity.events.LivingEntityEvents;
 import net.fabricmc.fabric.api.entity.FakePlayer;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 public final class AchievementEvents {
 
   public static void init() {
-    LivingHurtEvent.HURT.register(AchievementEvents::onDamageEntity);
+    LivingEntityEvents.HURT.register(AchievementEvents::onDamageEntity);
     ItemCraftedCallback.EVENT.register(AchievementEvents::onCraft);
   }
 
@@ -35,7 +35,7 @@ public final class AchievementEvents {
   private static final String ADVANCEMENT_SHOOT_ARROW = "minecraft:adventure/shoot_arrow";
 
   public static void onCraft(Player player, ItemStack crafted, Container craftMatrix) {
-    if (player instanceof FakePlayer || !(player instanceof ServerPlayer playerMP) || crafted.isEmpty()) {
+    if (player == null || player instanceof FakePlayer || !(player instanceof ServerPlayer playerMP) || crafted.isEmpty()) {
       return;
     }
     Item item = crafted.getItem();
@@ -54,11 +54,11 @@ public final class AchievementEvents {
     }*/
   }
 
-  public static void onDamageEntity(LivingHurtEvent event) {
-    DamageSource source = event.getSource();
+  public static float onDamageEntity(DamageSource source, LivingEntity damaged, float amount) {
     if (source.is(DamageTypeTags.IS_PROJECTILE) && !(source.getEntity() instanceof FakePlayer) && source.getEntity() instanceof ServerPlayer) {// && source.getImmediateSource() instanceof EntityArrow) {
       grantAdvancement((ServerPlayer) source.getEntity(), ADVANCEMENT_SHOOT_ARROW);
     }
+    return amount;
   }
 
   private static void grantAdvancement(ServerPlayer playerMP, String advancementResource) {
