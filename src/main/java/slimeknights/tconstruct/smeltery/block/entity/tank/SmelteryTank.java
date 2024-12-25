@@ -358,7 +358,9 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
         transaction.addOuterCloseCallback((result) -> {
           if (result.wasCommitted()) {
             if (fluid.getAmount() <= 0) {
-              SmelteryTank.this.fluids.remove(slot);
+              if (!SmelteryTank.this.fluids.isEmpty()) {
+                SmelteryTank.this.fluids.remove(slot);
+              }
               parent.notifyFluidsChanged(FluidChange.REMOVED, fluid);
             } else {
               parent.notifyFluidsChanged(FluidChange.CHANGED, fluid);
