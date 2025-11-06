@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/invar"
+        "c:invar_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/invar"
+    "tag": "c:invar_nuggets"
   },
   "result": {
     "amount": 1000,

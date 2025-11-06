@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/nickel"
+        "c:nickel_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/nickel"
+    "tag": "c:nickel_nuggets"
   },
   "result": {
     "amount": 1000,

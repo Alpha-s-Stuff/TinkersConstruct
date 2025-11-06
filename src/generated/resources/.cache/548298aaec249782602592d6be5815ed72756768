@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-19T14:57:03.403748701	Hephaestus/Tinkers' Construct Modifier Recipes
+// 1.20.1	2025-11-06T15:54:27.999681257	Hephaestus/Tinkers' Construct Modifier Recipes
 9aaf1d262598bd4a77830397f9c16c499de6a5f6 data/tconstruct/recipes/tools/modifiers/upgrade/magnetic_armor.json
 8c9c4d430e5364d667f3f3a9b7892b7f94792be6 data/tconstruct/recipes/tools/modifiers/upgrade/lightspeed_from_block.json
 10849efb4c19ccf4b8d50286f9d5f21b59659b78 data/tconstruct/recipes/tools/modifiers/upgrade/blasting.json
@@ -122,7 +122,7 @@ cc8cc6f91842651538e48fd2b49621abe2bfa66a data/tconstruct/recipes/tools/modifiers
 83b2acd5fb07597bdc6c3fe095f1ae43baa75174 data/tconstruct/recipes/tools/modifiers/ability/snowdrift.json
 22f875131d62087dd8611372223e5352c4c18e89 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/haste.json
 bd2aab99eb6ee1c5d7986f53c8bce4b3a75fe716 data/tconstruct/recipes/tools/modifiers/slotless/embellishment_osmium.json
-89953c7da33b651becd8f935d716fb3bb91ce64b data/tconstruct/recipes/tools/modifiers/slotless/embellishment_netherite.json
+a83d3eddc219b1c7ae87a311d01106a1db1c51e9 data/tconstruct/recipes/tools/modifiers/slotless/embellishment_netherite.json
 8d921caeed8c087bce1ca292b73ff3d58bd33c15 data/tconstruct/recipes/tools/severing/enderman_head.json
 216c70e44c5277f6eafd124428321b9c7eded9f4 data/tconstruct/recipes/tools/modifiers/defense/golden.json
 7a5db49aa38bf4ef229963ec9e538721fd9734e3 data/tconstruct/recipes/tools/severing/wither_skeleton_bone.json
@@ -306,7 +306,7 @@ d1e92e0ea83fd1e20d7d31d2cee6b49506c9c49e data/tconstruct/recipes/tools/severing/
 41ff632b6bebdd5e75ec55e434ef3b45348564a7 data/tconstruct/recipes/tools/modifiers/upgrade/sharpness_from_block.json
 2e807f4041469f5cff7dab7e07845e2de1a246ef data/tconstruct/recipes/tools/modifiers/salvage/upgrade/tank.json
 3034fa37e9af5d3be645108c8795a0b10f880dbe data/tconstruct/recipes/tools/modifiers/worktable/enchantment_converting/unenchant_tool.json
-6f1c806f177d1b556d8a377dcc35b45797300227 data/tconstruct/recipes/tools/modifiers/slotless/embellishment_debris.json
+98c19de55933f90f72e4ffcac40d5c651ddbd6ef data/tconstruct/recipes/tools/modifiers/slotless/embellishment_debris.json
 8f73773efedc6a5eb2004af0f5f2e16227f0c6e4 data/tconstruct/recipes/tools/modifiers/worktable/attack_modifier_clearing.json
 9eea0ce35e031233184d0e74f6b3916914877d59 data/tconstruct/recipes/tools/modifiers/ability/crystalshot_earthslime.json
 e7499e2825a62f1d2ae53e004b03954582252245 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/knockback_armor.json

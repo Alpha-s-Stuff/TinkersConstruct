@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/queens_slime"
+    "tag": "c:queens_slime_nuggets"
   },
   "result": {
     "amount": 1000,

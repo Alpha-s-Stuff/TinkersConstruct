@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/osmium"
+        "c:osmium_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/osmium"
+    "tag": "c:osmium_nuggets"
   },
   "result": {
     "amount": 1000,

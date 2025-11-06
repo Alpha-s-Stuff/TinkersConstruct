@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-19T14:57:03.400357752	Hephaestus/Tinkers' Construct Advancements
+// 1.20.1	2025-11-06T15:54:27.997186829	Hephaestus/Tinkers' Construct Advancements
 27dc233819980196b23c2223c1bed3bb6986ec96 data/tconstruct/advancements/tools/modified.json
 5d51126d2d2ad5da7cb88ba9e95bbf272a0eca91 data/tconstruct/advancements/world/slime_collector.json
 fbbcc779ac91f453988173e80fe45d62da1c6bea data/tconstruct/advancements/tools/make_part.json
@@ -24,7 +24,7 @@ f9c8bf1cc51b92f795d8b37f17a6018877976615 data/tconstruct/advancements/foundry/al
 cba8f3d11e5dbfd16489e60f578972ffb212574c data/tconstruct/advancements/smeltery/melter.json
 cd5e46ee6d9d524bfb46a7553a23e321d1db7dcf data/tconstruct/advancements/foundry/fantastic_foundry.json
 192b83703dcb7cc896197008b6d7f2304f4a2c35 data/tconstruct/advancements/foundry/encyclopedia.json
-12bfed7788ced1bce3b4d7af31645ec854c00f18 data/tconstruct/advancements/foundry/manyullyn_lanterns.json
+3a1e116c4368c34bd83037d96a32ecab119d1117 data/tconstruct/advancements/foundry/manyullyn_lanterns.json
 4ffe1df853211e8b70e435bad61ba3716d0813b0 data/tconstruct/advancements/tools/tinker_station.json
 f02235ff2da5f4f956ec6f52dc81d5eac152eb8f data/tconstruct/advancements/world/ender_island.json
 641e569beac290d279d404abf16cdbbe4fd6cbd1 data/tconstruct/advancements/tools/tool_smith.json

@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/signalum"
+        "c:signalum_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/signalum"
+    "tag": "c:signalum_nuggets"
   },
   "result": {
     "amount": 1000,

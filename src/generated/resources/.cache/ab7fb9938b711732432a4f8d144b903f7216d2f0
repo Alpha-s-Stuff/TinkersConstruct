@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-19T14:57:03.385261984	Hephaestus/Tinker's Construct Material Traits
+// 1.20.1	2025-11-06T15:54:27.988808523	Hephaestus/Tinker's Construct Material Traits
 9a76409be7bd824d7e41fa36374e1ebca1c4452e data/tconstruct/tinkering/materials/traits/necrotic_bone.json
 1b4677a8f0dd450270ed33a979519e458d3d0ad6 data/tconstruct/tinkering/materials/traits/necronium.json
 2353128d7f048fe243ea7fb76997714f6724e5e2 data/tconstruct/tinkering/materials/traits/rotten_flesh.json
@@ -44,21 +44,21 @@ bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/tconstruct/tinkering/materials/tra
 1a5c1dd8a483c62382f376680fe51aea19c4d478 data/tconstruct/tinkering/materials/traits/blazing_bone.json
 92b2961b17dd406e223e7a12be0005ecec8b1bd5 data/tconstruct/tinkering/materials/traits/seared_stone.json
 8fc0f197304407826d9304068ea750fa2cd81ac3 data/tconstruct/tinkering/materials/traits/electrum.json
-6a6d8b96baf274be9b2dceb52cb497e7e2fa1406 data/tconstruct/tinkering/materials/traits/lead.json
 d0c52d18187eff513b50d52cdd38477a635d396f data/tconstruct/tinkering/materials/traits/steel.json
+6a6d8b96baf274be9b2dceb52cb497e7e2fa1406 data/tconstruct/tinkering/materials/traits/lead.json
 b1aeb7c3bda2a4a1edef9958a72acfe520db0a2d data/tconstruct/tinkering/materials/traits/slimewood.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/tconstruct/tinkering/materials/traits/uranium.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/tconstruct/tinkering/materials/traits/debris.json
 3b7a43bd8e167b0cb30d704853f595edee865dda data/tconstruct/tinkering/materials/traits/manyullyn.json
 0ab32960d2653d8adaa64b22f1d867e8a19bc3b4 data/tconstruct/tinkering/materials/traits/gold.json
-35933f51588a06ce545379a0423dadf4ec40e730 data/tconstruct/tinkering/materials/traits/silver.json
 c8101fd9a1e66d8871d7ca1c4c46a4bc34d3cc41 data/tconstruct/tinkering/materials/traits/skyslime_vine.json
+35933f51588a06ce545379a0423dadf4ec40e730 data/tconstruct/tinkering/materials/traits/silver.json
 001a17bd7093ddabc9945f92c1a773507b80ec7f data/tconstruct/tinkering/materials/traits/chorus.json
 71d6321a67c52a12d0d8edab3958fe2e757c53c1 data/tconstruct/tinkering/materials/traits/ancient_hide.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/tconstruct/tinkering/materials/traits/earthslime.json
 803a8e5e900a88a5ee62e74f0799bc5606f2b36a data/tconstruct/tinkering/materials/traits/pig_iron.json
-a4e8cff42d646402d44a365dbf6c667016e4192a data/tconstruct/tinkering/materials/traits/leather.json
 c6575a4a030b406ba747f97844921660c759c8c5 data/tconstruct/tinkering/materials/traits/bloodbone.json
+a4e8cff42d646402d44a365dbf6c667016e4192a data/tconstruct/tinkering/materials/traits/leather.json
 e6e60e906f829e0dcf69f02584e883ea9a84d30a data/tconstruct/tinkering/materials/traits/bronze.json
 5a80dbb8c03118fcf43c7d3c58c74ccfc452e061 data/tconstruct/tinkering/materials/traits/darkthread.json
 bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f data/tconstruct/tinkering/materials/traits/phantom.json

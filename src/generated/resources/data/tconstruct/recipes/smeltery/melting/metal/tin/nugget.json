@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/tin"
+        "c:tin_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/tin"
+    "tag": "c:tin_nuggets"
   },
   "result": {
     "amount": 1000,

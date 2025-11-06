@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/pewter"
+        "c:pewter_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/pewter"
+    "tag": "c:pewter_nuggets"
   },
   "result": {
     "amount": 1000,

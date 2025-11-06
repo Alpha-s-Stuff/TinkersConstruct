@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/enderium"
+        "c:enderium_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/enderium"
+    "tag": "c:enderium_nuggets"
   },
   "result": {
     "amount": 1000,

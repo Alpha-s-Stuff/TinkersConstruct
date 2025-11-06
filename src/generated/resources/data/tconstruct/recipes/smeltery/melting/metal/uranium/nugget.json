@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/uranium"
+        "c:uranium_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/uranium"
+    "tag": "c:uranium_nuggets"
   },
   "result": {
     "amount": 1000,

@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/pig_iron"
+    "tag": "c:pig_iron_nuggets"
   },
   "result": {
     "amount": 1000,

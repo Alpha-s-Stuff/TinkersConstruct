@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/lumium"
+        "c:lumium_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/lumium"
+    "tag": "c:lumium_nuggets"
   },
   "result": {
     "amount": 1000,

@@ -150,7 +150,7 @@ public interface ISmelteryRecipeHelper extends ICastCreationHelper {
     String prefix = folder + "/" + name + "/";
     tagMelting(consumer, fluid, FluidValues.METAL_BLOCK, name + "_blocks", 3.0f, prefix + "block", isOptional);
     tagMelting(consumer, fluid, FluidValues.INGOT, name + "_ingots", 1.0f, prefix + "ingot", isOptional);
-    tagMelting(consumer, fluid, FluidValues.NUGGET, "nuggets/" + name, 1 / 3f, prefix + "nugget", isOptional);
+    tagMelting(consumer, fluid, FluidValues.NUGGET, name + "_nuggets", 1 / 3f, prefix + "nugget", isOptional);
     if (hasOre) {
       oreMelting(consumer, fluid, FluidValues.INGOT,     "raw_" + name + "_ores",      null, 1.5f, prefix + "raw",       isOptional, OreRateType.METAL, 1.0f, byproducts);
       oreMelting(consumer, fluid, FluidValues.INGOT * 9, "raw_" + name + "_blocks", null, 6.0f, prefix + "raw_block", isOptional, OreRateType.METAL, 9.0f, byproducts);

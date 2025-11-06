@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/refined_obsidian"
+        "c:refined_obsidian_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/refined_obsidian"
+    "tag": "c:refined_obsidian_nuggets"
   },
   "result": {
     "amount": 1000,

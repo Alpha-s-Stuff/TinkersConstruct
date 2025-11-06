@@ -1561,10 +1561,10 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     // does nothing by default, but helpful for addons
     plateTexture(consumer, MaterialIds.cobalt,    false, folder);
     // tier 4
-    plateTexture(consumer, MaterialIds.debris, "nuggets/netherite_scrap", false, folder);
+    plateTexture(consumer, MaterialIds.debris, "netherite_scrap_nuggets", false, folder);
     plateTexture(consumer, MaterialIds.manyullyn, false, folder);
     plateTexture(consumer, MaterialIds.hepatizon, false, folder);
-    plateTexture(consumer, MaterialIds.netherite, "nuggets/netherite", false, folder);
+    plateTexture(consumer, MaterialIds.netherite, "netherite_nuggets", false, folder);
     // tier 2 compat
     plateTexture(consumer, MaterialIds.osmium,   true, folder);
     plateTexture(consumer, MaterialIds.tungsten, true, folder);

@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-19T14:57:03.392890493	Hephaestus/Tinkers' Construct Common Recipes
+// 1.20.1	2025-11-06T15:54:27.992850765	Hephaestus/Tinkers' Construct Common Recipes
 abedfe163c2ed917a5d669d3ff0e4cddb795e5b8 data/tconstruct/advancements/recipes/building_blocks/common/mud_bricks_stairs.json
 2b462dc6120f22f2d47cf476ec2b877253de5751 data/tconstruct/recipes/common/glass/clear_glass_pane.json
 dc2aa064670555420f4dd2a0d59996802da75d28 data/tconstruct/advancements/recipes/misc/common/glass/yellow_clear_stained_glass.json
@@ -124,8 +124,8 @@ dc45224dd33b53c10e97512f80103bb25d425f65 data/tconstruct/advancements/recipes/mi
 7d5ee99241667603d424c82bb36ddaf63147ef95 data/tconstruct/recipes/common/glass/blue_clear_stained_glass_pane_from_panes.json
 ba3b888b97610e64b782ad045d2d648320d7ae5e data/tconstruct/recipes/common/glass/yellow_clear_stained_glass_pane.json
 edca4a2f8cf2ec96dc6a6e073832393e4b7b285b data/tconstruct/recipes/common/materials/hepatizon_nugget_from_ingot.json
-b8b662edd9e1d92e3a992329ba8f8dbd5aa95411 data/tconstruct/advancements/recipes/misc/common/glass/pink_clear_stained_glass_pane_from_panes.json
 2863187d93b843dd0d5e8ab133e44758a459ec81 data/tconstruct/recipes/common/glass/gray_clear_stained_glass.json
+b8b662edd9e1d92e3a992329ba8f8dbd5aa95411 data/tconstruct/advancements/recipes/misc/common/glass/pink_clear_stained_glass_pane_from_panes.json
 90a25bb9b3c402c15968bfdb1d39fc976c47057a data/tconstruct/advancements/recipes/building_blocks/common/materials/hepatizon_ingot_from_block.json
 ff33f151c021bbdc46b3a2e4e4277e5f00eab653 data/tconstruct/recipes/common/glass/vanilla/end_crystal.json
 054d0b255ee6d0a53c214433ba30f0bbb3d11f38 data/tconstruct/recipes/common/gold_bars.json

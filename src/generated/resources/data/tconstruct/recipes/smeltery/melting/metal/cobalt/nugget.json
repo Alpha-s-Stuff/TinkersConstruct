@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/cobalt"
+    "tag": "c:cobalt_nuggets"
   },
   "result": {
     "amount": 1000,

@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/brass"
+        "c:brass_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/brass"
+    "tag": "c:brass_nuggets"
   },
   "result": {
     "amount": 1000,

@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/aluminum"
+        "c:aluminum_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/aluminum"
+    "tag": "c:aluminum_nuggets"
   },
   "result": {
     "amount": 1000,

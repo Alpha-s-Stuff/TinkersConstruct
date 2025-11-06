@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/constantan"
+        "c:constantan_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/constantan"
+    "tag": "c:constantan_nuggets"
   },
   "result": {
     "amount": 1000,

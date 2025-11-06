@@ -3,13 +3,13 @@
   "allow_crystal": false,
   "inputs": [
     {
-      "tag": "c:nuggets/netherite"
+      "tag": "c:netherite_nuggets"
     },
     {
-      "tag": "c:nuggets/netherite"
+      "tag": "c:netherite_nuggets"
     },
     {
-      "tag": "c:nuggets/netherite"
+      "tag": "c:netherite_nuggets"
     }
   ],
   "result": {

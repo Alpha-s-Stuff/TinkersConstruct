@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/electrum"
+        "c:electrum_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/electrum"
+    "tag": "c:electrum_nuggets"
   },
   "result": {
     "amount": 1000,

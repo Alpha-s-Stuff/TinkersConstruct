@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/rose_gold"
+    "tag": "c:rose_gold_nuggets"
   },
   "result": {
     "amount": 1000,

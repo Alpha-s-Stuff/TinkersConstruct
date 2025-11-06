@@ -1,8 +1,8 @@
-// 1.20.1	2024-04-19T14:57:03.401735406	Hephaestus/Tinkers Construct Block Tags
+// 1.20.1	2025-11-06T15:54:27.998201062	Hephaestus/Tinkers Construct Block Tags
 61ba530b49ae3c5473c77baf566f3b7fab2307ad data/minecraft/tags/blocks/saplings.json
 0c9d7465ebc29fbe18ed898c790e1bcfe4e7cb82 data/tconstruct/tags/blocks/mineable/mattock.json
-34f09448796c64c5ef415680d576a1377178d999 data/minecraft/tags/blocks/planks.json
 764c0179593c083175d3f04f45cd587c6cdad81d data/minecraft/tags/blocks/enderman_holdable.json
+34f09448796c64c5ef415680d576a1377178d999 data/minecraft/tags/blocks/planks.json
 ddc8560c960e743426f375489155dd05bbc62583 data/c/tags/blocks/light_gray_glass_panes.json
 b518cdb1555b7a282deac7009917dde4adcc0996 data/c/tags/blocks/soulsteel_blocks.json
 f88f5fe1b6abd20431c00be22c9c2ba4ea0e128c data/c/tags/blocks/green_glass_panes.json

@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/silver"
+        "c:silver_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/silver"
+    "tag": "c:silver_nuggets"
   },
   "result": {
     "amount": 1000,

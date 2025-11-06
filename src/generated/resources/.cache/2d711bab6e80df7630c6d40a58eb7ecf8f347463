@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-19T14:57:03.39172582	Hephaestus/Tinker's Construct Material Stats
+// 1.20.1	2025-11-06T15:54:27.992453154	Hephaestus/Tinker's Construct Material Stats
 bf7e5de508fafe10ba8f33a3e0c90abe092079df data/tconstruct/tinkering/materials/stats/leather.json
 131c76845c85f6f7be31f845dc8ed29ff5148000 data/tconstruct/tinkering/materials/stats/bloodbone.json
 98e19ee71e1a5d045a85416dc1e160cdce3d657a data/tconstruct/tinkering/materials/stats/flint.json
@@ -34,12 +34,12 @@ a23ba8c347ce893fea38ca86f1c285dced36fd77 data/tconstruct/tinkering/materials/sta
 7ccc3390646421ed843dc8428633dbd028df0b2c data/tconstruct/tinkering/materials/stats/osmium.json
 0f785eeca266f830bc7f5a611a7bffbd42f7756d data/tconstruct/tinkering/materials/stats/string.json
 37a7cbefb1c03eca04bb5112b072280753aebf45 data/tconstruct/tinkering/materials/stats/chorus.json
-61600d90081c30cd64602f8791a84cddb78c8d52 data/tconstruct/tinkering/materials/stats/steel.json
 534873163105794664d65b81f99fa5994f546cef data/tconstruct/tinkering/materials/stats/cobalt.json
 fe572bc869c4c140edb6356ac3a679892ccf4dd7 data/tconstruct/tinkering/materials/stats/hepatizon.json
+61600d90081c30cd64602f8791a84cddb78c8d52 data/tconstruct/tinkering/materials/stats/steel.json
 54fafb4e19eecabb60994e083c384b75d9220fc6 data/tconstruct/tinkering/materials/stats/iron.json
-0f9597f5f114900dff26a6f823e3cfa682cb834c data/tconstruct/tinkering/materials/stats/scorched_stone.json
 70470ae9d0ab39c729a22766ce059cbfb9e14f78 data/tconstruct/tinkering/materials/stats/ancient_hide.json
+0f9597f5f114900dff26a6f823e3cfa682cb834c data/tconstruct/tinkering/materials/stats/scorched_stone.json
 0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/debris.json
 fe0498a7ee52cc4d6b81bae08ea1a92492f047e4 data/tconstruct/tinkering/materials/stats/wood.json
 5b64671c5b6febd860702c8ea53a42e98cd4a648 data/tconstruct/tinkering/materials/stats/bamboo.json
@@ -49,8 +49,8 @@ fe0498a7ee52cc4d6b81bae08ea1a92492f047e4 data/tconstruct/tinkering/materials/sta
 0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/nickel.json
 044d119ac0c983da9f1a11f6046b3592c6981888 data/tconstruct/tinkering/materials/stats/aluminum.json
 0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/blood.json
-0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/clay.json
 3718f7363d22215ad7f84355b7b07ace8d590a73 data/tconstruct/tinkering/materials/stats/ender_pearl.json
+0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/clay.json
 4e7b21f5f427bd18284154ba314fc7c024c1755d data/tconstruct/tinkering/materials/stats/darkthread.json
 c28d8f897ca230c49428b787058c42d3115cec3b data/tconstruct/tinkering/materials/stats/bronze.json
 0fef441d2de7e9c165ae9d123ea91c257c99340d data/tconstruct/tinkering/materials/stats/skyslime.json

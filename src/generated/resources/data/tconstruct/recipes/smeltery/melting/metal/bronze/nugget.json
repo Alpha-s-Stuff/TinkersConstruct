@@ -3,13 +3,13 @@
     {
       "condition": "fabric:tags_populated",
       "values": [
-        "c:nuggets/bronze"
+        "c:bronze_nuggets"
       ]
     }
   ],
   "type": "tconstruct:melting",
   "ingredient": {
-    "tag": "c:nuggets/bronze"
+    "tag": "c:bronze_nuggets"
   },
   "result": {
     "amount": 1000,
