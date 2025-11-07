@@ -5,6 +5,7 @@ import lombok.Getter;
 import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -27,14 +28,14 @@ public class GuiTankModule {
   /** Tooltip for when the capacity is 0, it breaks some stuff */
   private static final Component NO_CAPACITY = Component.translatable(Mantle.makeDescriptionId("gui", "fluid.millibucket"), 0).withStyle(ChatFormatting.GRAY);
 
-  private static final int TANK_INDEX = 0;
+  public static final int TANK_INDEX = 0;
   private final AbstractContainerScreen<?> screen;
-  private final SlottedStorage<FluidVariant> tank;
+  private final StorageView<FluidVariant> tank;
   @Getter
   private final int x, y, width, height;
   private final BiConsumer<Long,List<Component>> formatter;
 
-  public GuiTankModule(AbstractContainerScreen<?> screen, SlottedStorage<FluidVariant> tank, int x, int y, int width, int height, ResourceLocation tooltipId) {
+  public GuiTankModule(AbstractContainerScreen<?> screen, StorageView<FluidVariant> tank, int x, int y, int width, int height, ResourceLocation tooltipId) {
     this.screen = screen;
     this.tank = tank;
     this.x = x;
@@ -59,11 +60,11 @@ public class GuiTankModule {
    * @return  Fluid height
    */
   private long getFluidHeight() {
-    long capacity =  tank.getSlot(TANK_INDEX).getCapacity();
+    long capacity =  tank.getCapacity();
     if (capacity == 0) {
       return height;
     }
-    return height * tank.getSlot(TANK_INDEX).getAmount() / capacity;
+    return height * tank.getAmount() / capacity;
   }
 
   /**
@@ -71,7 +72,7 @@ public class GuiTankModule {
    * @param graphics  Gui graphics instance
    */
   public void draw(GuiGraphics graphics) {
-    GuiUtil.renderFluidTank(graphics.pose(), screen, new FluidStack(tank.getSlot(TANK_INDEX)), tank.getSlot(TANK_INDEX).getCapacity(), x, y, width, height, 100);
+    GuiUtil.renderFluidTank(graphics.pose(), screen, new FluidStack(tank), tank.getCapacity(), x, y, width, height, 100);
   }
 
   /**
@@ -107,9 +108,9 @@ public class GuiTankModule {
     int checkY = mouseY - screen.topPos;
 
     if (isHovered(checkX, checkY)) {
-      FluidStack fluid = new FluidStack(tank.getSlot(TANK_INDEX));
+      FluidStack fluid = new FluidStack(tank);
       long amount = fluid.getAmount();
-      long capacity = tank.getSlot(TANK_INDEX).getCapacity();
+      long capacity = tank.getCapacity();
 
       // if hovering over the fluid, display with name
       final List<Component> tooltip;
@@ -151,7 +152,7 @@ public class GuiTankModule {
   @Nullable
   public FluidStack getIngreientUnderMouse(int checkX, int checkY) {
     if (isHovered(checkX, checkY) && checkY > (y + height) - getFluidHeight()) {
-      return new FluidStack(tank.getSlot(TANK_INDEX));
+      return new FluidStack(tank);
     }
     return null;
   }

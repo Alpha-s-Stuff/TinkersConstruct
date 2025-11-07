@@ -102,7 +102,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
 
   @Override
   public SingleSlotStorage<FluidVariant> getSlot(int slot) {
-    return new FluidStackSlot(getFluidInTank(slot), slot);
+    return new FluidStackSlot(slot);
   }
 
   @Nonnull
@@ -295,11 +295,11 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
 
   @SuppressWarnings("UnstableApiUsage")
   @AllArgsConstructor
-  public class FluidStackSlot extends SnapshotParticipant<FluidSnapshot> implements SingleSlotStorage<FluidVariant> {
+  public class FluidStackSlot implements SingleSlotStorage<FluidVariant> {
 
-    private FluidStack fluid;
     private final int slot;
 
+    // Ideally this will never be called, since this only really needs to be a storage view. I really need to stop relying on SlottedStorage we only really need the extract method
     @Override
     public long insert(FluidVariant resource, long maxAmount, TransactionContext transaction) {
       // if full or nothing being filled, do nothing
@@ -320,6 +320,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
       contained += usable;
 
       // check if we already have the given liquid
+      FluidStack fluid = fluids.get(slot);
       if (fluid.isFluidEqual(resource)) {
         // yup. add it
         fluid.grow(usable);
@@ -331,17 +332,18 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
       }
 
       // not present yet, add it
-      var fluid = new FluidStack(resource, usable);
-      fluids.add(fluid);
+      var inserted = new FluidStack(resource, usable);
+      fluids.add(inserted);
       transaction.addOuterCloseCallback((result) -> {
         if (result.wasCommitted())
-          parent.notifyFluidsChanged(FluidChange.ADDED, fluid);
+          parent.notifyFluidsChanged(FluidChange.ADDED, inserted);
       });
       return usable;
     }
 
     @Override
     public long extract(FluidVariant resource, long maxAmount, TransactionContext transaction) {
+      FluidStack fluid = fluids.get(slot);
       if (fluid.isFluidEqual(resource)) {
         // if found, determine how much we can drain
         long drainable = Math.min(maxAmount, fluid.getAmount());
@@ -350,15 +352,20 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
         FluidStack ret = fluid.copy();
         ret.setAmount(drainable);
 
-        // update tank if executing
+        // update tank and snapshots
         updateSnapshots(transaction);
         fluid.shrink(drainable);
         contained -= drainable;
+
         // if now empty, remove from the list
+        if (fluid.getAmount() <= 0) {
+          SmelteryTank.this.fluids.remove(slot);
+        }
+
+        // Notify changed if commited
         transaction.addOuterCloseCallback((result) -> {
           if (result.wasCommitted()) {
             if (fluid.getAmount() <= 0) {
-              SmelteryTank.this.fluids.remove(slot);
               parent.notifyFluidsChanged(FluidChange.REMOVED, fluid);
             } else {
               parent.notifyFluidsChanged(FluidChange.CHANGED, fluid);
@@ -374,32 +381,22 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> ex
 
     @Override
     public boolean isResourceBlank() {
-      return this.fluid.getType().isBlank();
+      return getFluidInTank(slot).getType().isBlank();
     }
 
     @Override
     public FluidVariant getResource() {
-      return this.fluid.getType();
+      return getFluidInTank(slot).getType();
     }
 
     @Override
     public long getAmount() {
-      return this.fluid.getAmount();
+      return getFluidInTank(slot).getAmount();
     }
 
     @Override
     public long getCapacity() {
-      return SmelteryTank.this.getTankCapacity(this.slot);
-    }
-
-    @Override
-    protected FluidSnapshot createSnapshot() {
-      return SmelteryTank.this.createSnapshot();
-    }
-
-    @Override
-    protected void readSnapshot(FluidSnapshot snapshot) {
-      SmelteryTank.this.readSnapshot(snapshot);
+      return getTankCapacity(this.slot);
     }
   }
 

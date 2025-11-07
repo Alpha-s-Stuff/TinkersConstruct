@@ -36,7 +36,7 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
     if (te != null) {
       FuelModule fuelModule = te.getFuelModule();
       fuel = new GuiFuelModule(this, fuelModule, 153, 32, 12, 36, 152, 15, container.isHasFuelSlot());
-      outputTank = new GuiTankModule(this, te.getTank(), 114, 16, 34, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
+      outputTank = new GuiTankModule(this, te.getTank().getSlot(GuiTankModule.TANK_INDEX), 114, 16, 34, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
       updateTanks();
     } else {
       fuel = null;
@@ -53,7 +53,7 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
       GuiTankModule[] tanks = new GuiTankModule[numTanks];
       int max = Math.min(numTanks, 5); // only support 5 tanks, any more is impossible
       for (int i = 0; i < max; i++) {
-        tanks[i] = new GuiTankModule(this, alloyTank.getFluidHandler(i), INPUT_TANK_START_X[i], 16, 14, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
+        tanks[i] = new GuiTankModule(this, alloyTank.getFluidHandler(i).getSlot(GuiTankModule.TANK_INDEX), INPUT_TANK_START_X[i], 16, 14, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
       }
       this.inputTanks = tanks;
     }
