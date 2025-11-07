@@ -3,7 +3,12 @@ package slimeknights.tconstruct.smeltery.block.entity.module;
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemHandlerHelper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +29,7 @@ import java.util.function.Predicate;
  */
 @SuppressWarnings("UnstableApiUsage")
 @RequiredArgsConstructor
-public class MeltingModule extends SingleStackStorage implements IMeltingContainer, ContainerData {
+public class MeltingModule implements IMeltingContainer, ContainerData {
   public static final int NO_SPACE = -1;
 
   private static final String TAG_CURRENT_TIME = "time";
@@ -60,6 +65,9 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
   @Getter
   private ItemStack stack = ItemStack.EMPTY;
 
+  @Getter
+  private final WrappedModuleStorage fabricWrapper = new WrappedModuleStorage();
+
   @Override
   public IOreRate getOreRate() {
     return oreRate;
@@ -94,6 +102,7 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
 
     // update stack and heat required
     this.stack = newStack;
+    fabricWrapper.wrappedStack = newStack;
     int newTime = 0;
     int newTemp = 0;
     if(!stack.isEmpty()) {
@@ -107,7 +116,6 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
     requiredTemp = newTemp;
     parent.setChangedFast();
   }
-
 
   /**
    * Checks if this slot has an item it can heat
@@ -227,6 +235,7 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
    */
   public void readFromTag(CompoundTag nbt) {
     stack = ItemStack.of(nbt);
+    fabricWrapper.wrappedStack = stack;
     if (!stack.isEmpty()) {
       currentTime = nbt.getInt(TAG_CURRENT_TIME);
       requiredTime = nbt.getInt(TAG_REQUIRED_TIME);
@@ -257,6 +266,31 @@ public class MeltingModule extends SingleStackStorage implements IMeltingContain
       case CURRENT_TIME -> currentTime = value;
       case REQUIRED_TIME -> requiredTime = value;
       case REQUIRED_TEMP -> requiredTemp = value;
+    }
+  }
+
+  public class WrappedModuleStorage extends SingleStackStorage {
+
+    private ItemStack wrappedStack = MeltingModule.this.stack;
+
+    @Override
+    protected ItemStack getStack() {
+      return wrappedStack;
+    }
+
+    @Override
+    protected void setStack(ItemStack stack) {
+      wrappedStack = stack;
+    }
+
+    @Override
+    protected void onFinalCommit() {
+      MeltingModule.this.setStack(wrappedStack);
+    }
+
+    @Override
+    protected int getCapacity(ItemVariant itemVariant) {
+      return 1;
     }
   }
 }

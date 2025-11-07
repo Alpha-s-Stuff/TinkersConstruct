@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-06T15:54:28.023885583	Hephaestus/Tinkers' Construct Fluid Tooltip Provider
+// 1.20.1	2025-11-06T16:23:34.086171361	Hephaestus/Tinkers' Construct Fluid Tooltip Provider
 a8a0f9f8e05cd4da786e8dd1822fa6fbfe9fe225 assets/tconstruct/mantle/fluid_tooltips/small_gems.json
 d59217837223210cee82bb87f1914391a1f427e6 assets/tconstruct/mantle/fluid_tooltips/water.json
 adace8c038609ad6cc1b3a242aee23c595a22885 assets/tconstruct/mantle/fluid_tooltips/smeltery.json
@@ -6,8 +6,8 @@ adace8c038609ad6cc1b3a242aee23c595a22885 assets/tconstruct/mantle/fluid_tooltips
 ca8edcac73ae97b992db2275aa0596f2028ca75d assets/tconstruct/mantle/fluid_tooltips/venom.json
 fd1762b94cce1b5252c88ba2722b9ab50b5a3f8b assets/tconstruct/mantle/fluid_tooltips/metals.json
 93552d18ee57d1e4efeed8efcf8b24ad466e669f assets/tconstruct/mantle/fluid_tooltips/glass.json
-e4ecc46e7f966cf9047fc8c22b9d61df12a44a49 assets/tconstruct/mantle/fluid_tooltips/slime.json
 adace8c038609ad6cc1b3a242aee23c595a22885 assets/tconstruct/mantle/fluid_tooltips/foundry.json
+e4ecc46e7f966cf9047fc8c22b9d61df12a44a49 assets/tconstruct/mantle/fluid_tooltips/slime.json
 14196307183d0a25d1f6bb9f15d07c206deb8684 assets/tconstruct/mantle/fluid_tooltips/clay.json
 d732476c6efadbde0d8311e13b1296dd06a7a4f0 assets/tconstruct/mantle/fluid_tooltips/soup.json
 454a0ab42f453e40cfd963f362561607173e7754 assets/tconstruct/mantle/fluid_tooltips/ingots.json

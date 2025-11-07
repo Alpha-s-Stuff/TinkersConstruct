@@ -6,6 +6,7 @@ import io.github.fabricators_of_create.porting_lib.transfer.item.SlottedStackSto
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -29,7 +30,7 @@ import java.util.function.Consumer;
 /**
  * Inventory composite made of a set of melting module inventories
  */
-public class MeltingModuleInventory implements SlottedStackStorage, TransactionContext.CloseCallback {
+public class MeltingModuleInventory implements SlottedStackStorage {
   private static final String TAG_SLOT = "slot";
   private static final String TAG_ITEMS = "items";
   private static final String TAG_SIZE = "size";
@@ -221,14 +222,15 @@ public class MeltingModuleInventory implements SlottedStackStorage, TransactionC
     MeltingModule module = getModule(slot);
     boolean canInsert = module.getStack().isEmpty();
     if (canInsert) {
-      updateSnapshots(slot, transaction);
-      setStackInSlot(slot, resource.toStack((int) amount));
+      module.getFabricWrapper().insert(resource, 1, transaction);
+      return 1;
     }
-    return canInsert ? amount : 0;
+    return 0;
   }
 
   @Override
   public long extractSlot(int slot, ItemVariant resource, long amount, TransactionContext transaction) {
+    StoragePreconditions.notBlankNotNegative(resource, amount);
     if (amount == 0) {
       return 0;
     }
@@ -241,14 +243,12 @@ public class MeltingModuleInventory implements SlottedStackStorage, TransactionC
       return 0;
     }
 
-    updateSnapshots(slot, transaction);
-    setStackInSlot(slot, ItemStack.EMPTY);
-    return existing.getCount();
+    return getModule(slot).getFabricWrapper().extract(resource, amount, transaction);
   }
 
   @Override
   public SingleSlotStorage<ItemVariant> getSlot(int slot) {
-    return getModule(slot);
+    return getModule(slot).getFabricWrapper();
   }
 
   /* Heating */
@@ -376,6 +376,8 @@ public class MeltingModuleInventory implements SlottedStackStorage, TransactionC
   public long insert(ItemVariant resource, long maxAmount, TransactionContext transaction) {
     long totalInserted = 0;
     for (int i = 0; i < getSlotCount(); i++) {
+      if (maxAmount <= 0)
+        return totalInserted;
       long inserted = insertSlot(i, resource, maxAmount, transaction);
       totalInserted += inserted;
       maxAmount -= inserted;
@@ -392,49 +394,5 @@ public class MeltingModuleInventory implements SlottedStackStorage, TransactionC
       maxAmount -= extracted;
     }
     return totalExtracted;
-  }
-
-  protected SnapshotData createSnapshot(int slot) {
-    return new SnapshotData(slot, getStackInSlot(slot));
-  }
-
-  protected void readSnapshot(SnapshotData snapshot) {
-    setStackInSlot(snapshot.slot(), snapshot.stack());
-  }
-
-  public void updateSnapshots(int slot, TransactionContext transaction) {
-    // Make sure we have enough storage for snapshots
-    while (snapshots.size() <= transaction.nestingDepth()) {
-      snapshots.add(null);
-    }
-
-    // If the snapshot is null, we need to create it, and we need to register a callback.
-    if (snapshots.get(transaction.nestingDepth()) == null) {
-      SnapshotData snapshot = createSnapshot(slot);
-      Objects.requireNonNull(snapshot, "Snapshot may not be null!");
-
-      snapshots.set(transaction.nestingDepth(), snapshot);
-      transaction.addCloseCallback(this);
-    }
-  }
-
-  private final List<SnapshotData> snapshots = new ArrayList<>();
-
-  @Override
-  public void onClose(TransactionContext transaction, TransactionContext.Result result) {
-    // Get and remove the relevant snapshot.
-    SnapshotData snapshot = snapshots.set(transaction.nestingDepth(), null);
-
-    if (result.wasAborted()) {
-      // If the transaction was aborted, we just revert to the state of the snapshot.
-      readSnapshot(snapshot);
-    } else if (transaction.nestingDepth() > 0) {
-      if (snapshots.get(transaction.nestingDepth() - 1) == null) {
-        // No snapshot yet, so move the snapshot one nesting level up.
-        snapshots.set(transaction.nestingDepth() - 1, snapshot);
-        // This is the first snapshot at this level: we need to call addCloseCallback.
-        transaction.getOpenTransaction(transaction.nestingDepth() - 1).addCloseCallback(this);
-      }
-    }
   }
 }

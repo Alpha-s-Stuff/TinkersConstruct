@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-06T15:54:27.991346581	Hephaestus/Tinkers' Construct Tool Recipes
+// 1.20.1	2025-11-06T16:23:34.048107347	Hephaestus/Tinkers' Construct Tool Recipes
 2d22463e1f4fbbf656e8689e35ffac2540dba40e data/tconstruct/recipes/tools/parts/casting/small_axe_head_composite.json
 72087a19cc4e6784e5a9832340bf03f3c00e812c data/tconstruct/recipes/tools/parts/casting/broad_blade_gold_cast.json
 e64a2f5f3389dc9cca12105b62b0333ec753cd84 data/tconstruct/advancements/recipes/tools/tools/building/earth_staff.json
@@ -6,8 +6,8 @@ e63deccda6dca9b7ecff3a3c920ad2f967206840 data/tconstruct/recipes/tools/parts/cas
 3c95aa8c5e25b378963828fabbd3350500ec46cc data/tconstruct/recipes/smeltery/casts/gold_casts/round_plate.json
 984d3af35d140e51d7481a11a4019adb1b55494a data/tconstruct/recipes/armor/building/travelers_pants.json
 4eff76805c87e751d8910aa9199538108a1dd1e1 data/tconstruct/recipes/armor/building/slime_skull/string.json
-f6c3264e4287c4cf75a1551edef6c8ee697cff2b data/tconstruct/recipes/armor/repair/travelers_leather_repair_kit.json
 3b914adf4e62afa12f56889c87b9a6b946592af6 data/tconstruct/recipes/armor/repair/travelers_leather_station.json
+f6c3264e4287c4cf75a1551edef6c8ee697cff2b data/tconstruct/recipes/armor/repair/travelers_leather_repair_kit.json
 89550352f7db4751c4e3b5c2f65edfeb7be98a87 data/tconstruct/recipes/tools/parts/casting/broad_axe_head_sand_cast.json
 ad07566fee6267245b75f6acf7f40463094c5b26 data/tconstruct/recipes/tools/building/sword.json
 7b00130f89de67e0a75e3e6b0a46a79673c8d186 data/tconstruct/recipes/smeltery/casts/sand_casts/round_plate.json

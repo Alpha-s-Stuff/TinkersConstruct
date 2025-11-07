@@ -1,10 +1,10 @@
-// 1.20.1	2025-11-06T15:54:27.993983019	Hephaestus/Global Loot Modifiers : tconstruct
+// 1.20.1	2025-11-06T16:23:34.05143616	Hephaestus/Global Loot Modifiers : tconstruct
 b66981db568575a5253ec42bcbaa6662fe7b1746 data/tconstruct/loot_modifiers/lustrous/tin.json
 b5fee62c87a24bd882a7df6a57bbdaa792cb8371 data/forge/loot_modifiers/global_loot_modifiers.json
 ac1f7a702785c4ab95f89a1aaef234c30f57dedf data/tconstruct/loot_modifiers/lustrous/tungsten.json
 0be16750796cbb547c6c73ca5ea44e9611a0f707 data/tconstruct/loot_modifiers/lustrous/uranium.json
-f214196dd69c476552f8f3e9262d525753a26b20 data/tconstruct/loot_modifiers/lustrous/zinc.json
 827fa7c698908deb9f57d3e09ecf8a9c49fa389c data/tconstruct/loot_modifiers/lustrous/copper.json
+f214196dd69c476552f8f3e9262d525753a26b20 data/tconstruct/loot_modifiers/lustrous/zinc.json
 278b42106ce76e81ae6bd7cb00efe10b762d9fdd data/tconstruct/loot_modifiers/lustrous/lead.json
 9156e12929357f6c9a099c5889ebb5dbbe65377a data/tconstruct/loot_modifiers/lustrous/silver.json
 c520d7ed4ce1ab799b0de8783e4a9558917bbc67 data/tconstruct/loot_modifiers/wither_bone.json
@@ -12,8 +12,8 @@ c520d7ed4ce1ab799b0de8783e4a9558917bbc67 data/tconstruct/loot_modifiers/wither_b
 627de9b0a3e49e01b9620d7e38dc6b4d7fe32ed0 data/tconstruct/loot_modifiers/chrysophilite_modifier.json
 141fb1ece0cf60f3aa745510a50cef5c0c5a7984 data/tconstruct/loot_modifiers/lustrous/platinum.json
 8b36b7f1ed1035fd6367e660a76756cb5fdc1a6a data/tconstruct/loot_modifiers/modifier_hook.json
-3e16943e02ce8505959572f63a5a285de8a201e6 data/tconstruct/loot_modifiers/lustrous/netherite_scrap.json
 85215d75c1de6c7010d455af8ff018846cec42dd data/tconstruct/loot_modifiers/lustrous/aluminum.json
+3e16943e02ce8505959572f63a5a285de8a201e6 data/tconstruct/loot_modifiers/lustrous/netherite_scrap.json
 ad93a774fe7ed84690f0edf1c1d649840c27c1f8 data/tconstruct/loot_modifiers/lustrous/gold.json
 87830752219291344cbd85e7aee6b189763c2fee data/tconstruct/loot_modifiers/lustrous/nickel.json
 271b822771953af542c7ce404fa85cc548867596 data/tconstruct/loot_modifiers/lustrous/cobalt.json
