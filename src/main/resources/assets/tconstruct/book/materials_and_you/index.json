@@ -25,8 +25,10 @@
     "data": "sections/tools.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:pickaxe",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:pickaxe"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,
@@ -45,8 +47,10 @@
     "data": "sections/armor.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:travelers_chestplate",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:travelers_chestplate"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,

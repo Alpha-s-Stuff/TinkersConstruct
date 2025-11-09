@@ -11,8 +11,10 @@
     "data": "sections/tools.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:pickaxe",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:pickaxe"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,
@@ -31,8 +33,10 @@
     "data": "sections/armor.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:travelers_chestplate",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:travelers_chestplate"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,
@@ -48,8 +52,10 @@
     "hideWhenLocked": true,
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "upgrades"
         }
@@ -63,8 +69,10 @@
     "hideWhenLocked": true,
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "defense"
         }
@@ -78,8 +86,10 @@
     "hideWhenLocked": true,
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "slotless"
         }
@@ -93,8 +103,10 @@
     "hideWhenLocked": true,
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "abilities"
         }

@@ -39,8 +39,10 @@
     "data": "sections/tools.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:cleaver",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:cleaver"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,
@@ -60,8 +62,10 @@
     "data": "sections/abilities.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "abilities"
         }
@@ -73,8 +77,10 @@
     "data": "sections/defense.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "defense"
         }

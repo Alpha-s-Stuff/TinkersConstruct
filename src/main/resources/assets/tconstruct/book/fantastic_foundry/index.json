@@ -32,8 +32,10 @@
     "data": "sections/armor.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:plate_chestplate",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:plate_chestplate"
+        },
         "nbt": {
           "tic_broken": false,
           "tic_display": true,

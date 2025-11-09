@@ -46,8 +46,10 @@
     "data": "sections/upgrades.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "upgrades"
         }
@@ -59,8 +61,10 @@
     "data": "sections/slotless.json",
     "icon": {
       "item": {
-        "type": "forge:nbt",
-        "item": "tconstruct:creative_slot",
+        "fabric:type": "fabric:nbt",
+        "base": {
+          "item": "tconstruct:creative_slot"
+        },
         "nbt": {
           "slot": "slotless"
         }

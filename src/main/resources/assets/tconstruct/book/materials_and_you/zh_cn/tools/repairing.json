@@ -4,8 +4,10 @@
     "grid": [
       [
         {
-          "type": "forge:nbt",
-          "item": "tconstruct:pickaxe",
+          "fabric:type": "fabric:nbt",
+          "base": {
+            "item": "tconstruct:pickaxe"
+          },
           "nbt": {
             "tic_broken": false,
             "tic_display": true,
@@ -24,8 +26,10 @@
       ]
     ],
     "result": {
-      "type": "forge:nbt",
-      "item": "tconstruct:pickaxe",
+      "fabric:type": "fabric:nbt",
+      "base": {
+        "item": "tconstruct:pickaxe"
+      },
       "nbt": {
         "tic_broken": false,
         "tic_display": true,
