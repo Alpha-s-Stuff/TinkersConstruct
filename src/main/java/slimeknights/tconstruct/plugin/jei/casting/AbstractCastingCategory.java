@@ -3,14 +3,18 @@ package slimeknights.tconstruct.plugin.jei.casting;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import lombok.Getter;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.fabric.constants.FabricTypes;
+import mezz.jei.api.fabric.ingredients.fluids.IJeiFluidIngredient;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotView;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.helpers.IPlatformFluidHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -33,6 +37,7 @@ import slimeknights.tconstruct.plugin.jei.fabric.JEITypes;
 import java.awt.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 /** Shared base logic for the two casting recipe types */
 public abstract class AbstractCastingCategory implements IRecipeCategory<IDisplayableCastingRecipe>, IRecipeTooltipReplacement {
@@ -110,7 +115,7 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
            .addTooltipCallback(this)
            .setFluidRenderer(capacity, false, 32, 32)
            .setOverlay(tankOverlay, 0, 0)
-           .addIngredients(JEITypes.FLUID_STACK, recipe.getFluids());
+           .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(recipe.getFluids()));
     // pouring fluid
     int h = 11;
     if (!recipe.hasCast()) {
@@ -119,11 +124,11 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
     builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 43, 8)
            .addTooltipCallback(this)
            .setFluidRenderer(1L, false, 6, h)
-           .addIngredients(JEITypes.FLUID_STACK, recipe.getFluids());
+           .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(recipe.getFluids()));
   }
 
   @Override
   public void addMiddleLines(IRecipeSlotView slot, List<Component> list) {
-    slot.getDisplayedIngredient(JEITypes.FLUID_STACK).ifPresent(stack -> FluidTooltipHandler.appendMaterial(stack, list));
+    slot.getDisplayedIngredient(FabricTypes.FLUID_STACK).ifPresent(stack -> FluidTooltipHandler.appendMaterial(JEITypes.toFluidStack(stack), list));
   }
 }

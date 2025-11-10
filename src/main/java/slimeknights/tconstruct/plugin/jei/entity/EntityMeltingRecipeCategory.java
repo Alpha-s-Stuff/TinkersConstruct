@@ -3,6 +3,7 @@ package slimeknights.tconstruct.plugin.jei.entity;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
+import mezz.jei.api.fabric.constants.FabricTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated.StartDirection;
@@ -98,14 +99,14 @@ public class EntityMeltingRecipeCategory implements IRecipeCategory<EntityMeltin
     builder.addSlot(RecipeIngredientRole.OUTPUT, 115, 11)
            .setFluidRenderer(FluidValues.INGOT * 2, false, 16, 32)
            .addTooltipCallback(TOOLTIP_MAP.computeIfAbsent(recipe.getDamage(), FluidTooltip::new))
-           .addIngredient(JEITypes.FLUID_STACK, recipe.getOutput());
+           .addIngredient(FabricTypes.FLUID_STACK, JEITypes.toJEI(recipe.getOutput()));
 
     // show fuels that are valid for this recipe
     builder.addSlot(RecipeIngredientRole.CATALYST, 75, 43)
            .setFluidRenderer(1L, false, 16, 16)
            .setOverlay(tank, 0, 0)
            .addTooltipCallback(IRecipeTooltipReplacement.EMPTY)
-           .addIngredients(JEITypes.FLUID_STACK, MeltingFuelHandler.getUsableFuels(1));
+           .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(MeltingFuelHandler.getUsableFuels(1)));
   }
 
   /** Tooltip for relevant damage on the fluid */
@@ -113,7 +114,7 @@ public class EntityMeltingRecipeCategory implements IRecipeCategory<EntityMeltin
     @Override
     public void addMiddleLines(IRecipeSlotView recipeSlotView, List<Component> list) {
       // add fluid units
-      recipeSlotView.getDisplayedIngredient(JEITypes.FLUID_STACK).ifPresent(fluid -> FluidTooltipHandler.appendMaterial(fluid, list));
+      recipeSlotView.getDisplayedIngredient(FabricTypes.FLUID_STACK).ifPresent(fluid -> FluidTooltipHandler.appendMaterial(JEITypes.toFluidStack(fluid), list));
       // output rate
       if (damage == 2) {
         list.add(TOOLTIP_PER_HEART);

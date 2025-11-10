@@ -6,6 +6,7 @@ import com.google.common.cache.LoadingCache;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import mezz.jei.api.fabric.constants.FabricTypes;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.drawable.IDrawableAnimated.StartDirection;
@@ -43,7 +44,7 @@ public abstract class AbstractMeltingCategory implements IRecipeCategory<Melting
   /** Tooltip for fuel display */
   public static final IRecipeTooltipReplacement FUEL_TOOLTIP = (slot, tooltip) -> {
     //noinspection SimplifyOptionalCallChains  Not for int streams
-    slot.getDisplayedIngredient(JEITypes.FLUID_STACK).ifPresent(stack -> {
+    slot.getDisplayedIngredient(FabricTypes.FLUID_STACK).ifPresent(stack -> {
       MeltingFuelHandler.getTemperature(stack.getFluid()).ifPresent(temperature -> {
         tooltip.add(Component.translatable(KEY_TEMPERATURE, temperature).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable(KEY_MULTIPLIER, temperature / 1000f).withStyle(ChatFormatting.GRAY));
@@ -117,8 +118,8 @@ public abstract class AbstractMeltingCategory implements IRecipeCategory<Melting
 
     @Override
     public void addMiddleLines(IRecipeSlotView slot, List<Component> list) {
-      slot.getDisplayedIngredient(JEITypes.FLUID_STACK).ifPresent(stack -> {
-        if (appendMaterial(stack, list)) {
+      slot.getDisplayedIngredient(FabricTypes.FLUID_STACK).ifPresent(stack -> {
+        if (appendMaterial(JEITypes.toFluidStack(stack), list)) {
           FluidTooltipHandler.appendShift(list);
         }
       });

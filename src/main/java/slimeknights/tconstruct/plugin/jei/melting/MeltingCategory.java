@@ -4,6 +4,7 @@ import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.fabric.constants.FabricTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
@@ -101,7 +102,7 @@ public class MeltingCategory extends AbstractMeltingCategory {
       .addTooltipCallback(tooltip)
       .setFluidRenderer(FluidValues.METAL_BLOCK, false, 32, 32)
       .setOverlay(tankOverlay, 0, 0)
-      .addIngredient(JEITypes.FLUID_STACK, recipe.getOutput());
+      .addIngredient(FabricTypes.FLUID_STACK, JEITypes.toJEI(recipe.getOutput()));
 
     // show fuels that are valid for this recipe
     int fuelHeight = 32;
@@ -117,7 +118,7 @@ public class MeltingCategory extends AbstractMeltingCategory {
     builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 4, 4)
            .addTooltipCallback(FUEL_TOOLTIP)
            .setFluidRenderer(1L, false, 12, fuelHeight)
-           .addIngredients(JEITypes.FLUID_STACK, MeltingFuelHandler.getUsableFuels(recipe.getTemperature()));
+           .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(MeltingFuelHandler.getUsableFuels(recipe.getTemperature())));
   }
 
   /** Adds amounts to outputs and temperatures to fuels */

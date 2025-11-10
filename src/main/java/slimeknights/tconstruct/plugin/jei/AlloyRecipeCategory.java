@@ -3,6 +3,7 @@ package slimeknights.tconstruct.plugin.jei;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import lombok.Getter;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.fabric.constants.FabricTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated.StartDirection;
@@ -41,12 +42,12 @@ public class AlloyRecipeCategory implements IRecipeCategory<AlloyRecipe> {
 
   /** Tooltip for fluid inputs */
   private static final IRecipeTooltipReplacement FLUID_TOOLTIP = (slot, list) ->
-    slot.getDisplayedIngredient(JEITypes.FLUID_STACK).ifPresent(stack -> FluidTooltipHandler.appendMaterial(stack, list));
+    slot.getDisplayedIngredient(FabricTypes.FLUID_STACK).ifPresent(stack -> FluidTooltipHandler.appendMaterial(JEITypes.toFluidStack(stack), list));
 
   /** Tooltip for fuel display */
   public static final IRecipeTooltipReplacement FUEL_TOOLTIP = (slot, tooltip) -> {
     //noinspection SimplifyOptionalCallChains  Not for int streams
-    slot.getDisplayedIngredient(JEITypes.FLUID_STACK)
+    slot.getDisplayedIngredient(FabricTypes.FLUID_STACK)
         .ifPresent(stack -> MeltingFuelHandler.getTemperature(stack.getFluid())
                                               .ifPresent(temperature -> tooltip.add(Component.translatable(KEY_TEMPERATURE, temperature).withStyle(ChatFormatting.GRAY))));
   };
@@ -118,14 +119,14 @@ public class AlloyRecipeCategory implements IRecipeCategory<AlloyRecipe> {
         builder.addSlot(role, fluidX, y)
                .addTooltipCallback(tooltip)
                .setFluidRenderer(maxAmount, false, w, height)
-               .addIngredients(JEITypes.FLUID_STACK, fluids.get(i));
+               .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(fluids.get(i)));
       }
       // for the last, the width is the full remaining width
       int fluidX = x + max * w;
       builder.addSlot(role, fluidX, y)
              .addTooltipCallback(tooltip)
              .setFluidRenderer(maxAmount, false, totalWidth - (w * max), height)
-             .addIngredients(JEITypes.FLUID_STACK, fluids.get(max));
+             .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(fluids.get(max)));
     }
     return maxAmount;
   }
@@ -139,13 +140,13 @@ public class AlloyRecipeCategory implements IRecipeCategory<AlloyRecipe> {
     builder.addSlot(RecipeIngredientRole.OUTPUT, 137, 11)
            .addTooltipCallback(FLUID_TOOLTIP)
            .setFluidRenderer(maxAmount, false, 16, 32)
-           .addIngredient(JEITypes.FLUID_STACK, recipe.getOutput());
+           .addIngredient(FabricTypes.FLUID_STACK, JEITypes.toJEI(recipe.getOutput()));
 
     // fuel
     builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 94, 43)
            .addTooltipCallback(FUEL_TOOLTIP)
            .setFluidRenderer(1L, false, 16, 16)
            .setOverlay(tank, 0, 0)
-           .addIngredients(JEITypes.FLUID_STACK, MeltingFuelHandler.getUsableFuels(recipe.getTemperature()));
+           .addIngredients(FabricTypes.FLUID_STACK, JEITypes.toJEI(MeltingFuelHandler.getUsableFuels(recipe.getTemperature())));
   }
 }

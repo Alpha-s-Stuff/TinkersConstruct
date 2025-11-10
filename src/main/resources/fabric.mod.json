@@ -35,6 +35,9 @@
     "rei_common": [
       "slimeknights.tconstruct.plugin.rei.REIPluginServer"
     ],
+    "jei_mod_plugin": [
+      "slimeknights.tconstruct.plugin.jei.JEIPlugin"
+    ],
     "mixinsquared": [
       "slimeknights.tconstruct.StarSodiumFixer"
     ],
