@@ -1,10 +1,10 @@
-// 1.20.1	2025-11-09T20:34:59.903368219	Hephaestus/Global Loot Modifiers : tconstruct
+// 1.20.1	2025-11-10T11:28:19.85537383	Hephaestus/Global Loot Modifiers : tconstruct
 b66981db568575a5253ec42bcbaa6662fe7b1746 data/tconstruct/loot_modifiers/lustrous/tin.json
 b5fee62c87a24bd882a7df6a57bbdaa792cb8371 data/forge/loot_modifiers/global_loot_modifiers.json
 ac1f7a702785c4ab95f89a1aaef234c30f57dedf data/tconstruct/loot_modifiers/lustrous/tungsten.json
+827fa7c698908deb9f57d3e09ecf8a9c49fa389c data/tconstruct/loot_modifiers/lustrous/copper.json
 0be16750796cbb547c6c73ca5ea44e9611a0f707 data/tconstruct/loot_modifiers/lustrous/uranium.json
 f214196dd69c476552f8f3e9262d525753a26b20 data/tconstruct/loot_modifiers/lustrous/zinc.json
-827fa7c698908deb9f57d3e09ecf8a9c49fa389c data/tconstruct/loot_modifiers/lustrous/copper.json
 278b42106ce76e81ae6bd7cb00efe10b762d9fdd data/tconstruct/loot_modifiers/lustrous/lead.json
 9156e12929357f6c9a099c5889ebb5dbbe65377a data/tconstruct/loot_modifiers/lustrous/silver.json
 c520d7ed4ce1ab799b0de8783e4a9558917bbc67 data/tconstruct/loot_modifiers/wither_bone.json

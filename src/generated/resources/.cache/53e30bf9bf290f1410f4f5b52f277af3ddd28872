@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-09T20:34:59.912389628	Hephaestus/Tinkers' Construct Smeltery Recipes
+// 1.20.1	2025-11-10T11:28:19.863659094	Hephaestus/Tinkers' Construct Smeltery Recipes
 f1e39ffd4c80c5235d5afef69a9d2db13f4da7cd data/tconstruct/recipes/smeltery/melting/metal/tin/raw.json
 33d3b06a2e2274fa281ecac6301002b24d364f84 data/tconstruct/recipes/smeltery/melting/metal/aluminum/dust.json
 e1c52c203db9f85cecfa6e424d7fb03b3ef0c778 data/tconstruct/recipes/smeltery/casting/metal/invar/rod_gold_cast.json
@@ -1199,8 +1199,8 @@ d5d70dafd4898cc1f63f9d108d0d5fa43753c726 data/tconstruct/recipes/smeltery/scorch
 fd9e35a66c618a2bfdd3a56fed3d842e26b9c884 data/tconstruct/recipes/smeltery/melting/metal/amethyst_bronze/plates.json
 7453f43f544815317e5f011c9a781f1462290ea4 data/tconstruct/recipes/smeltery/melting/metal/osmium/ore_dense.json
 e960ea81fe7724b18eca787db241b6cddd2ad99e data/tconstruct/recipes/smeltery/melting/metal/gold/leggings.json
-b4ec4f5bc58055c27107f1e8ae5841d1344d5e20 data/tconstruct/recipes/smeltery/melting/metal/tungsten/raw_block.json
 0b155c6ca4c39f5c098a33a61c643e01487b177f data/tconstruct/advancements/recipes/misc/smeltery/seared/seared_bricks_from_brick.json
+b4ec4f5bc58055c27107f1e8ae5841d1344d5e20 data/tconstruct/recipes/smeltery/melting/metal/tungsten/raw_block.json
 b097f447915bf4f7033bdad4529ba35d5053bd46 data/tconstruct/recipes/smeltery/melting/metal/soulsteel/gear.json
 2642765e0791e0c6739b7a6c19e23c70f31159c2 data/tconstruct/recipes/smeltery/casting/metal/tin/rod_gold_cast.json
 980e5d7f324b9988acfa3d478a2a81df92f0b933 data/tconstruct/recipes/smeltery/melting/diamond/boots.json

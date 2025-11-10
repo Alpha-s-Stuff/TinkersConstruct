@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-09T20:34:59.910429592	Hephaestus/Tinkers' Construct Modifier Recipes
+// 1.20.1	2025-11-10T11:28:19.861654618	Hephaestus/Tinkers' Construct Modifier Recipes
 9aaf1d262598bd4a77830397f9c16c499de6a5f6 data/tconstruct/recipes/tools/modifiers/upgrade/magnetic_armor.json
 8c9c4d430e5364d667f3f3a9b7892b7f94792be6 data/tconstruct/recipes/tools/modifiers/upgrade/lightspeed_from_block.json
 10849efb4c19ccf4b8d50286f9d5f21b59659b78 data/tconstruct/recipes/tools/modifiers/upgrade/blasting.json
@@ -83,8 +83,8 @@ e0a72fa9186f2f7179bea68fdba835d0c07d4e8c data/tconstruct/recipes/tools/modifiers
 780f6c34547705207a68af7ff93e42dfb456500d data/tconstruct/recipes/tools/modifiers/salvage/upgrade/feather_falling.json
 14acd0acec514953c732fb24f6f5f0fbb66c69cb data/tconstruct/recipes/tools/modifiers/worktable/enchantment_converting/slotless_tool.json
 3813f3cd349becd9e09d0c2a08a0217a5237b246 data/tconstruct/recipes/tools/severing/cave_spider_head.json
-16beb4b67c1b09f89e9b80f25ae9fc804e3dbc05 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/knockback.json
 7133f7d3b2fcc5b01fc2ace598edb133dbaeb2f4 data/tconstruct/advancements/recipes/misc/tools/modifiers/silky_cloth.json
+16beb4b67c1b09f89e9b80f25ae9fc804e3dbc05 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/knockback.json
 eff7a30b31b3850733d452ca8da916bc6a533155 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/respiration.json
 9e70c2497ea6fca5145491a1ddfa80a690e04676 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/lightspeed_armor.json
 6badd35fcdd7f4d12807978bbc986c5d143fc9fe data/tconstruct/recipes/tools/severing/turtle_shell.json
@@ -193,8 +193,8 @@ c255f53d7b131606b7b305097d2bb7b67f2c6fa3 data/tconstruct/recipes/tools/modifiers
 f6675a0664da71c4e3d62b504ead6deb442a8870 data/tconstruct/recipes/tools/modifiers/slotless/embellishment_constantan.json
 3c0c1b8a40313333150dcd2a53c2716763d22c33 data/tconstruct/recipes/tools/modifiers/ability/unbreakable.json
 38639397e0c422e51dd6a67c63a0b0403b69399d data/tconstruct/recipes/tools/modifiers/upgrade/lightspeed_armor_from_dust.json
-b540d08a72e854a91b0bc10924af2a563b51b0d6 data/tconstruct/recipes/tools/modifiers/upgrade/offhanded.json
 abd02450aef65dae9a21531fdb2c3a7004f72a42 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/swiftstrike.json
+b540d08a72e854a91b0bc10924af2a563b51b0d6 data/tconstruct/recipes/tools/modifiers/upgrade/offhanded.json
 875fdefaf8e3116568b0bbe48354af59c945ac95 data/tconstruct/recipes/tools/modifiers/salvage/upgrade/speedy.json
 338fe1c6c493a0866e87fe4d8fb3d134a208a55c data/tconstruct/recipes/tools/modifiers/defense/fire_protection.json
 d06f4dc2486e47f0e7cc19a26754e871ee1881b8 data/tconstruct/recipes/tools/severing/skeleton_skull.json

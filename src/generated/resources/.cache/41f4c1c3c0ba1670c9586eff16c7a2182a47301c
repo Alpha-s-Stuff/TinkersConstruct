@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-09T20:34:59.907678613	Hephaestus/Tinkers' Construct Tool Definition Data Generator
+// 1.20.1	2025-11-10T11:28:19.859294261	Hephaestus/Tinkers' Construct Tool Definition Data Generator
 a73e07e266fe7b3b804af3918c5fdf8e6e0f3270 data/tconstruct/tinkering/tool_definitions/cleaver.json
 29e361aa304ea95ac592105fb5a5661ddd33f728 data/tconstruct/tinkering/tool_definitions/earth_staff.json
 6c3b69975b7e9fbaf154e4db22c9b79f01394fc6 data/tconstruct/tinkering/tool_definitions/mattock.json
@@ -27,8 +27,8 @@ b053dffae76704b118b02347cf48e4f63cfd4ff7 data/tconstruct/tinkering/tool_definiti
 d11805d602d14d7e6c13af2db6593921e3b84542 data/tconstruct/tinkering/tool_definitions/plate_boots.json
 12dd359d63d2d72b5f647a5f18914d672262682e data/tconstruct/tinkering/tool_definitions/plate_leggings.json
 a83357bc58c21b2c745599f0507dfc4418c9ddb6 data/tconstruct/tinkering/tool_definitions/slime_leggings.json
+adb3e6ab56556755e4fe904ec22c5b21c8f00854 data/tconstruct/tinkering/tool_definitions/broad_axe.json
 c4f1cc27b77b21fb3f789ae68f78c2ba4effec8b data/tconstruct/tinkering/tool_definitions/plate_helmet.json
 a68b4e309d226342035a1fd7da4f1da7dc1d934a data/tconstruct/tinkering/tool_definitions/ichor_staff.json
-adb3e6ab56556755e4fe904ec22c5b21c8f00854 data/tconstruct/tinkering/tool_definitions/broad_axe.json
 0952733beb8aa2d89297c0d83b38067adab600c8 data/tconstruct/tinkering/tool_definitions/slime_helmet.json
 6fa5230f6693153f5eb94a9e2a1237c004ddc52f data/tconstruct/tinkering/tool_definitions/travelers_helmet.json
