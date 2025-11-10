@@ -1624,9 +1624,9 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                         .save(consumer, modResource(slimeFolder + "mushroom_stew"));
 
     // fuels
-    MeltingFuelBuilder.fuel(new FluidStack(Fluids.LAVA, 50), 100)
+    MeltingFuelBuilder.fuel(new FluidStack(Fluids.LAVA, 50 * 81), 100)
                       .save(consumer, modResource(folder + "fuel/lava"));
-    MeltingFuelBuilder.fuel(new FluidStack(TinkerFluids.blazingBlood.get(), 50), 150)
+    MeltingFuelBuilder.fuel(new FluidStack(TinkerFluids.blazingBlood.get(), 50 * 81), 150)
                       .save(consumer, modResource(folder + "fuel/blaze"));
   }
 
