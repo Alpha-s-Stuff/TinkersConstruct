@@ -163,37 +163,33 @@ public class FuelModule implements ContainerData {
    */
   private int trySolidFuel(Storage<ItemVariant> handler, boolean consume) {
     for (StorageView<ItemVariant> view : handler.nonEmptyViews()) {
-      ItemStack stack = view.getResource().toStack((int) view.getAmount());
       int time = 0;
       if (FuelRegistry.INSTANCE.get(view.getResource().getItem()) != null)
         time = FuelRegistry.INSTANCE.get(view.getResource().getItem()/*, TinkerRecipeTypes.FUEL.get()*/) / 4;
       if (time > 0) {
         if (consume) {
           try (Transaction tx = TransferUtil.getTransaction()) {
-            view.extract(view.getResource(), 1, tx);
-            if (view.getResource().matches(stack) && !stack.isEmpty()) {
-              fuel += time;
-              fuelQuality = time;
-              temperature = SOLID_TEMPERATURE;
-              parent.setChangedFast();
-              // return the container
-              ItemStack container = view.getResource().toStack((int) view.getAmount()).getRecipeRemainder();
-              if (!container.isEmpty()) {
-                // if we cannot insert the container back, spit it on the ground
-                long inserted = TransferUtil.insertItem(handler, container);
-                if (inserted == 0) {
-                  Level world = getLevel();
-                  double x = (world.random.nextFloat() * 0.5F) + 0.25D;
-                  double y = (world.random.nextFloat() * 0.5F) + 0.25D;
-                  double z = (world.random.nextFloat() * 0.5F) + 0.25D;
-                  BlockPos pos = lastPos == NULL_POS ? parent.getBlockPos() : lastPos;
-                  ItemEntity itementity = new ItemEntity(world, pos.getX() + x, pos.getY() + y, pos.getZ() + z, container);
-                  itementity.setDefaultPickUpDelay();
-                  world.addFreshEntity(itementity);
-                }
+            ItemVariant resource = view.getResource();
+            long extracted = view.extract(view.getResource(), 1, tx);
+            fuel += time;
+            fuelQuality = time;
+            temperature = SOLID_TEMPERATURE;
+            parent.setChangedFast();
+            // return the container
+            ItemStack container = resource.toStack((int) extracted).getRecipeRemainder();
+            if (!container.isEmpty()) {
+              // if we cannot insert the container back, spit it on the ground
+              long inserted = TransferUtil.insertItem(handler, container);
+              if (inserted == 0) {
+                Level world = getLevel();
+                double x = (world.random.nextFloat() * 0.5F) + 0.25D;
+                double y = (world.random.nextFloat() * 0.5F) + 0.25D;
+                double z = (world.random.nextFloat() * 0.5F) + 0.25D;
+                BlockPos pos = lastPos == NULL_POS ? parent.getBlockPos() : lastPos;
+                ItemEntity itementity = new ItemEntity(world, pos.getX() + x, pos.getY() + y, pos.getZ() + z, container);
+                itementity.setDefaultPickUpDelay();
+                world.addFreshEntity(itementity);
               }
-            } else {
-              TConstruct.LOG.error("Invalid item removed from solid fuel handler");
             }
             tx.commit();
           }
