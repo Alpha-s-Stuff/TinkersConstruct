@@ -124,7 +124,7 @@ public class SmelteryBlockEntity extends HeatingStructureBlockEntity {
       meltingInventory.resize(size, dropItem);
       // fuel rate: every 15 blocks in the wall makes the fuel cost 1 more
       // perimeter: 2 of the X and the Z wall, one of the floor
-      fuelRate = (1 + ((2 * (dx * dy) + 2 * (dy * dz) + (dx * dz))) / BLOCKS_PER_FUEL) * 810;
+      fuelRate = 1 + ((2 * (dx * dy) + 2 * (dy * dz) + (dx * dz))) / BLOCKS_PER_FUEL;
     }
   }
 

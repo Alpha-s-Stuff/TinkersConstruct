@@ -111,7 +111,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   @Getter
   protected final FuelModule fuelModule = new FuelModule(this, () -> structure != null ? structure.getTanks() : Collections.emptyList());
   /** Current fuel consumption rate */
-  protected int fuelRate = 81;
+  protected int fuelRate = 1;
 
 
   /** Module handling entity interaction */
