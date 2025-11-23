@@ -2,12 +2,16 @@ package slimeknights.tconstruct.plugin.rei;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import dev.architectury.event.CompoundEventResult;
 import dev.architectury.fluid.FluidStack;
 import io.github.fabricators_of_create.porting_lib.mixin.accessors.common.accessor.RecipeManagerAccessor;
+import me.shedaniel.math.Point;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
+import me.shedaniel.rei.api.client.registry.screen.FocusedStackProvider;
+import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
 import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
@@ -15,15 +19,19 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.entry.type.EntryTypeRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
+import mezz.jei.api.gui.handlers.IGuiContainerHandler;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -76,9 +84,11 @@ import slimeknights.tconstruct.plugin.rei.partbuilder.PartBuilderDisplay;
 import slimeknights.tconstruct.plugin.rei.partbuilder.PatternEntryDefinition;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.smeltery.client.screen.IScreenWithFluidTank;
 import slimeknights.tconstruct.smeltery.data.SmelteryCompat;
 import slimeknights.tconstruct.tables.TinkerTables;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -240,6 +250,11 @@ public class REIPlugin implements REIClientPlugin {
   }
 
   @Override
+  public void registerScreens(ScreenRegistry registry) {
+    registry.registerFocusedStack(new GuiContainerTankHandler());
+  }
+
+  @Override
   public void registerTransferHandlers(TransferHandlerRegistry registry) {
 //    registry.register();
   }
@@ -316,5 +331,17 @@ public class REIPlugin implements REIClientPlugin {
   private static void addCatalysts(CategoryRegistry registry, EntryStack<ItemStack> entryStack, CategoryIdentifier<?> ...categoryIdentifiers) {
     for (CategoryIdentifier<?> categoryIdentifier : categoryIdentifiers)
       registry.addWorkstations(categoryIdentifier, entryStack);
+  }
+
+  public static class GuiContainerTankHandler implements FocusedStackProvider {
+    @Override
+    public CompoundEventResult<EntryStack<?>> provide(Screen screen, Point mouse) {
+      if (screen instanceof IScreenWithFluidTank containerScreen) {
+        Object ingredient = containerScreen.getIngredientUnderMouse(mouse.getX(), mouse.getY());
+        if (ingredient instanceof io.github.fabricators_of_create.porting_lib.fluids.FluidStack stack)
+          return CompoundEventResult.interruptTrue(EntryStacks.of(FluidStack.create(stack.getFluid(), stack.getAmount(), stack.getTag())));
+      }
+      return CompoundEventResult.pass();
+    }
   }
 }
