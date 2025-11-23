@@ -13,6 +13,7 @@ import io.github.fabricators_of_create.porting_lib.util.LazyOptional;
 import slimeknights.mantle.transfer.item.IItemHandler;
 import slimeknights.mantle.transfer.item.IItemHandlerModifiable;
 import slimeknights.mantle.transfer.item.ItemHandlerHelper;
+import slimeknights.tconstruct.FabricEvents;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -22,11 +23,13 @@ import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.menu.ToolContainerMenu;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /** Capability for a tool with an inventory */
@@ -88,7 +91,7 @@ public class ToolInventoryCapability implements IItemHandlerModifiable {
 
   /** If true, the given stack is blacklisted from being stored in a tool */
   public static boolean isBlacklisted(ItemStack stack) {
-    return !stack.getItem().canFitInsideContainerItems() || stack.is(TinkerTags.Items.TOOL_INVENTORY_BLACKLIST) /*|| stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent()*/; // TODO: PORT
+    return !stack.getItem().canFitInsideContainerItems() || stack.is(TinkerTags.Items.TOOL_INVENTORY_BLACKLIST) || FabricEvents.ITEM_STORAGE.find(stack, ToolStack.from(stack)) != null;
   }
 
   @Override
@@ -352,7 +355,7 @@ public class ToolInventoryCapability implements IItemHandlerModifiable {
 
   /** Opens the tool inventory container if an inventory is present on the given tool */
   public static InteractionResult tryOpenContainer(ItemStack stack, @Nullable IToolStackView tool, ToolDefinition definition, Player player, EquipmentSlot slotType) {
-    IItemHandler handler = null;//stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).filter(cap -> cap instanceof IItemHandlerModifiable).orElse(null); TODO: PORT
+    IItemHandler handler = Optional.ofNullable(FabricEvents.ITEM_STORAGE.find(stack, ToolStack.from(stack))).filter(cap -> cap instanceof IItemHandlerModifiable).orElse(null);
     if (handler != null) {
       if (player instanceof ServerPlayer serverPlayer) {
         NetworkUtil.openGui(serverPlayer, new SimpleMenuProvider(
