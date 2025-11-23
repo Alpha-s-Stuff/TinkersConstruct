@@ -529,7 +529,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay, UseFirst
 
   @Override
   public boolean allowContinuingBlockBreaking(Player player, ItemStack oldStack, ItemStack newStack) {
-    return shouldCauseReequipAnimation(oldStack, newStack, false);
+    return !shouldCauseReequipAnimation(oldStack, newStack, false);
   }
 
   @Override
