@@ -18,7 +18,6 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url = "https://libraries.minecraft.net/" }
     maven { url = "https://api.modrinth.com/maven" }
     maven { url = "https://maven.terraformersmc.com/releases/" }
     maven { url = "https://maven.shedaniel.me/"  }
@@ -26,7 +25,7 @@ repositories {
     maven { url = "https://maven.blamejared.com" } // CraftTweaker, Immersive Engineering
     maven { url = "https://www.cursemaven.com" }
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" }
-    maven { url = "https://ladysnake.jfrog.io/artifactory/mods" }
+    maven { url = "https://maven.ladysnake.org/releases" }
     maven { url = "https://mvn.devos.one/releases/" }
     maven { url = "https://mvn.devos.one/snapshots/" }
     maven { url = "https://maven.parchmentmc.org" }

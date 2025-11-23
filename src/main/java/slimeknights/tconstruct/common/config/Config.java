@@ -273,7 +273,6 @@ public class Config {
 
     // compat
     public final ForgeConfigSpec.BooleanValue inventoryTabsCompat;
-    public final ForgeConfigSpec.BooleanValue disableREIMessage;
 
     Client(ForgeConfigSpec.Builder builder) {
       builder.comment("Client only settings").push("client");
@@ -350,9 +349,6 @@ public class Config {
         this.inventoryTabsCompat = builder
           .comment("If true and Inventory Tabs is loaded, TConstruct table tabs will be hidden so Inventory Tabs tabs can be used.")
           .define("inventoryTabs", true);
-        this.disableREIMessage = builder
-          .comment("Disables the REI deprecation warning when joining a world.")
-          .define("disableREIMessage", false);
       }
       builder.pop();
 

@@ -16,11 +16,9 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
@@ -124,9 +122,6 @@ public class REIPlugin implements REIClientPlugin {
     for (Holder<Item> item : Objects.requireNonNull(Registry.ITEM.getTagOrEmpty(TinkerTags.Items.MELEE))) {
       registry.addWorkstations(TConstructREIConstants.SEVERING, EntryStacks.of(IModifiableDisplay.getDisplayStack(item.value())));
     }
-
-    if (Minecraft.getInstance().player != null && !Config.CLIENT.disableREIMessage.get())
-      Minecraft.getInstance().gui.getChat().addMessage((new TextComponent("Hephaestus is no longer supporting REI! Consider switching to JEI.").withStyle(ChatFormatting.RED)));
   }
 
   @Override
