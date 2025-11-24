@@ -30,7 +30,7 @@
     "rei_client": [
       "slimeknights.tconstruct.plugin.rei.REIPlugin"
     ],
-    "rei": [
+    "rei_server": [
       "slimeknights.tconstruct.plugin.rei.REIPluginServer"
     ],
     "jei_mod_plugin": [

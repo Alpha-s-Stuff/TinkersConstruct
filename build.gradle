@@ -16,7 +16,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven { url = "https://api.modrinth.com/maven" }
     maven { url = "https://maven.terraformersmc.com/releases/" }
@@ -103,6 +102,10 @@ loom {
 
             runDir "build/datagen"
         }
+
+        configureEach {
+            vmArg("-Dmixin.debug.export=true")
+        }
     }
 }
 
@@ -131,16 +134,17 @@ dependencies {
 
     // dependencies
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
-    modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.port_lib_version}+${project.minecraft_version}-stable"))
+    modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${project.port_lib_version}+${project.minecraft_version}"))
     modImplementation(include("curse.maven:forge-config-api-port-fabric-547434:${forge_config_version}"))
     modImplementation("com.github.AlphaMode:fakeconfig:master-SNAPSHOT") { exclude(group: "net.fabricmc.fabric-api") }
     modImplementation("com.github.AlphaMode:fakeconfigtoml:master-SNAPSHOT") { exclude(group: "net.fabricmc.fabric-api") }
-    modImplementation(include("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"))
+    modImplementation(include("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")) {
+        exclude(group: "io.github.ladysnake")
+    }
     include("io.github.tropheusj:serialization-hooks:0.3.23")
     modImplementation(include("io.github.tropheusj:milk-lib:0.3.2"))
 
-    api(include("com.github.LlamaLad7:MixinExtras:0.0.6"))
-    annotationProcessor(include("com.github.LlamaLad7:MixinExtras:0.0.6"))
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.0")))
 
     modImplementation "me.alphamode:Star:1.3+1.18.2"
 
