@@ -5,8 +5,10 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -127,7 +129,7 @@ public class InteractionHandler {
   }
 
   /** Implements modifier hooks for a chestplate right clicking a block with an empty hand */
-  static InteractionResult chestplateInteractWithBlock(Player player, Level world, InteractionHand hand, BlockHitResult trace) {
+  static InteractEventHack chestplateInteractWithBlock(Player player, Level world, InteractionHand hand, BlockHitResult trace) {
     // only handle chestplate interacts if the current hand is empty
     if (player.getItemInHand(hand).isEmpty() && !player.isSpectator()) {
       // item must be a chestplate
@@ -143,7 +145,7 @@ public class InteractionHandler {
         /*if (event.getUseItem() != Result.DENY)*/ {
           InteractionResult result = onBlockUse(context, tool, chestplate, entry -> entry.getModifier().beforeBlockUse(tool, entry.getLevel(), context, EquipmentSlot.CHEST));
           if (result.consumesAction()) {
-            return result;
+            return new InteractEventHack(result, true);
           }
         }
 
@@ -158,7 +160,7 @@ public class InteractionHandler {
             if (player instanceof ServerPlayer serverPlayer) {
               CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, ItemStack.EMPTY);
             }
-            return result;
+            return new InteractEventHack(result, true);
           }
         }
 
@@ -172,16 +174,16 @@ public class InteractionHandler {
             if (player instanceof ServerPlayer serverPlayer) {
               CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, ItemStack.EMPTY);
             }
-            return result;
+            return new InteractEventHack(result, true);
           }
         }
 
         // did not interact with an entity? try direct interaction
         // needs to be run here as the interact empty hook does not fire when targeting blocks
-        return onChestplateUse(player, chestplate, hand);
+        return new InteractEventHack(onChestplateUse(player, chestplate, hand), true);
       }
     }
-    return InteractionResult.PASS;
+    return new InteractEventHack(InteractionResult.PASS, false);
   }
 
   /** Implements {@link slimeknights.tconstruct.library.modifiers.Modifier#onToolUse(IToolStackView, int, net.minecraft.world.level.Level, Player, InteractionHand, EquipmentSlot)}, called differently on client and server */
@@ -264,7 +266,17 @@ public class InteractionHandler {
     UseEntityCallback.EVENT.register(InteractionHandler::beforeEntityInteract);
     UseEntityCallback.EVENT.register(TConstruct.getResource("event_phase"), InteractionHandler::afterEntityInteract);
     UseEntityCallback.EVENT.addPhaseOrdering(Event.DEFAULT_PHASE, TConstruct.getResource("event_phase"));
-    UseBlockCallback.EVENT.register(InteractionHandler::chestplateInteractWithBlock);
+    UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> { // We love poorly written fabric api events
+      var result = chestplateInteractWithBlock(player, world, hand, hitResult);
+      if (result.cancelled() && result.result() != InteractionResult.SUCCESS) {
+        if (player.level.isClientSide) {
+          ((LocalPlayer) player).connection.send(new ServerboundUseItemOnPacket(hand, hitResult));
+        }
+      }
+      return result.result();
+    });
     AttackEntityCallback.EVENT.register(InteractionHandler::onChestplateAttack);
   }
+
+  private record InteractEventHack(InteractionResult result, boolean cancelled) {}
 }
