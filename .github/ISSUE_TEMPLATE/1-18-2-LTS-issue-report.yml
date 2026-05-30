@@ -1,0 +1,121 @@
+name: 1.18.2 LTS Issue Report
+description: Report an issue with the 1.18.2 LTS of Hephaestus
+labels: [1.18.2, LTS, bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting an issue, please search the following links to make sure your issue is not covered:
+        
+        If you are using Quilt please test with Fabric to see if the issue persists, if it does/doesn't please note that.
+        
+        * **[Pinned Issues](/Alpha-s-Stuff/TinkersConstruct/issues)**: Some commonly reported issues are pinned
+        
+        Please fill in the following template to report your issue.
+        
+  - type: markdown
+    attributes:
+      value: "## Versions"
+  
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft Version
+      value: 1.18.2
+    validations:
+      required: true
+  - type: input
+    id: fabric-version
+    attributes:
+      label: Fabric Version
+      placeholder: "Ex: 0.16.3"
+    validations:
+      required: true
+  - type: input
+    id: fabric-api-version
+    attributes:
+      label: Fabric API Version
+      placeholder: "Ex: 0.77.0-1.18.2"
+    validations:
+      required: true
+  - type: input
+    id: hephaestus-version
+    attributes:
+      label: "Hephaestus Version"
+      description: "'Latest' is not a valid answer, write an exact version number"
+    validations:
+      required: true
+  
+ 
+  - type: markdown
+    attributes:
+      value: "## Issue Description"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe your issue
+    validations:
+      required: true
+  
+  - type: input
+    id: crash-report
+    attributes:
+      label: Crash Report
+      description: Paste a link to the crash report, if present
+    validations:
+      required: false
+      
+  - type: textarea
+    id: other-mods
+    attributes:
+      label: Other mods
+      description: List the smallest set of mods you have used to reproduce this issue. Please do not list a modpack name unless the modpack is public
+    validations:
+      required: true
+        
+        
+  - type: markdown
+    attributes:
+      value: "## Confirm the following"
+      
+  - type: dropdown
+    id: just-tinkers
+    attributes:
+      label: "Tried reproducing with just Tinkers?"
+      description: "Test by removing all other mods besides Tinkers' Construct"
+      options:
+        - 'Yes'
+        - 'I will go do that now'
+        - 'No'
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: performance-enhancers
+    attributes:
+      label: "Performance Enchancers"
+      description: "Select all that you were using when you reproduced the issue. Ideally reproduce with fewer performance enhancers."
+      multiple: true
+      options:
+        - 'Sodium'
+        - 'Performant'
+        - 'Other (specify under other mods)'
+        - 'None of the above'
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: searched
+    attributes:
+      label: "Searched for known issues?"
+      description: "Select all that apply. Please check [pinned issues](/Alpha-s-Stuff/TinkersConstruct/issues), the [search bar](/Alpha-s-Stuff/TinkersConstruct/issues), and [the FAQ](/Alpha-s-Stuff/TinkersConstruct/wiki/Tinkers%27-Construct-3-FAQ) to see if your issue is covered."
+      multiple: true
+      options:
+        - 'Checked pinned issues'
+        - 'Searched open issues'
+        - 'Searched closed issues'
+        - 'Checked the FAQ'
+        - 'I did not search'
+    validations:
+      required: true
