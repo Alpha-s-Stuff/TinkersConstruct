@@ -5,6 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
+        Note that the 1.18.2 version of Hephaestus is on LTS (long-term support). Only bug reports will be considered, not new features.
+        
         Before submitting an issue, please search the following links to make sure your issue is not covered:
         
         If you are using Quilt please test with Fabric to see if the issue persists, if it does/doesn't please note that.
